@@ -50,15 +50,12 @@ public class ProcessCsv {
 					  attendance_mark=40;
 					  a_status="OK";
 					  a=0.3;
-					  tokens[1]=attendance_mark+"";
-					  
-					  
+					  tokens[1]=attendance_mark+"";					  
 				  }
 				  else if(attendance_mark<=30 && attendance_mark>=24)
 				  {
 					  a_status="OK";
-					  a=.3;
-					  
+					  a=.3;					  
 				  }
 				  else
 				  {
@@ -145,8 +142,7 @@ public class ProcessCsv {
 		try{
 		fileWriter = new FileWriter("G:/training_data_processed.csv");
 		
-		
-		
+			
 		}
 		catch(Exception e)
 		{
