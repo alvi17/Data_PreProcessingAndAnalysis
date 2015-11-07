@@ -29,7 +29,7 @@ public class PrepateTrainigDataForCgpa{
 		fileReader = new BufferedReader(new FileReader(fileName));
 		fileWriter = new FileWriter("G:/training_data_for_male_female_cgpa.csv");
 		fileReader.readLine();
-		fileWriter.append("SID,Cgpa,Total_Credit_Completed,Result_status");
+		fileWriter.append("SID,Male_Female,Cgpa,Total_Credit_Completed,Result_status");
 		fileWriter.append("\n");
 		int i=1;
 		int serial=100;
@@ -39,36 +39,39 @@ public class PrepateTrainigDataForCgpa{
 			 String[] token = line.split(",");
 			 String c_complete,result_status,t_status;
 			 double a,t,c,s;
+			 int level=0,term=0;
 			 serial=Integer.parseInt(token[0]);
+			 level=Integer.parseInt(token[13]);
+			 term=Integer.parseInt(token[14]);
+			 if(level==4 && term ==2 || (level==5 && term ==2))
+			 {
+			 
+			  fileWriter.append(tokens[0]+","+tokens[3]+","+tokens[15]+","+tokens[19]+"\n");					  
+			 }
 			 if(serial==prev_serial)
 			 {
 				 tokens=token;
 			 }
-			 
-			
-			 
-			 if(serial!=prev_serial)
-			 {
-				 
-				 prev_serial=serial;
-				 if(tokens.length>0)
-				 {
+			 			 
+//			 if(serial!=prev_serial)
+//			 {
+//				 
+//				 prev_serial=serial;
+//				 if(tokens.length>0)
+//				 {
 //					  int attendance_mark=Integer.parseInt(tokens[1]);
 //					  float total_credit=Float.parseFloat(tokens[2]);
 //					  float term_count=Float.parseFloat(tokens[3]);
 //					  float credit_completed=Float.parseFloat(tokens[4]);
 //					  float cgpa=Float.parseFloat(tokens[5]);
-					  
-					  fileWriter.append(tokens[0]+","+tokens[5]+","+tokens[22]+"\n");
-					  
-				 }
+					  //				 }
 			 
 			
 			 i++;
 			
 			 }
 		 System.out.println("i= "+i);
-		}
+		
 		}
 		catch(Exception e)
 		{
