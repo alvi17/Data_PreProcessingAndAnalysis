@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PrepateTrainigDataForCgpa{
-	String fileName="processed_sheet1.csv";
+	String fileName="sheet1.csv";
 	FileWriter fileWriter = null;
 	
 	public PrepateTrainigDataForCgpa()
@@ -40,16 +40,21 @@ public class PrepateTrainigDataForCgpa{
 			 String c_complete,result_status,t_status;
 			 double a,t,c,s;
 			 int level=0,term=0;
-			 if(token.length>0)
+			 if(token.length>21)
 			 {
 			 serial=Integer.parseInt(token[0]);
-			
-			 level=Integer.parseInt(token[13]);
-			 term=Integer.parseInt(token[14]);
+			if(!token[16].equals(""))
+			{
+			 level=Integer.parseInt(token[16]);
+			}
+			if(!token[17].equals(""))
+			{
+			 term=Integer.parseInt(token[17]);
+			}
 			 if(((level==4 && term ==2 )|| (level==5 && term ==2)) && serial!=prev_serial)
 			 {
 			 
-			  fileWriter.append(token[0]+","+token[3]+","+token[15]+","+token[19]+"\n");	
+			  fileWriter.append(token[0]+","+token[5]+","+token[19]+","+token[22]+"\n");	
 			  prev_serial=serial;
 			 }
 			 }
@@ -73,9 +78,10 @@ public class PrepateTrainigDataForCgpa{
 			 
 			
 			 i++;
+			 System.out.println("i= "+i);
 			
 			 }
-		 System.out.println("i= "+i);
+		
 		
 		}
 		catch(Exception e)

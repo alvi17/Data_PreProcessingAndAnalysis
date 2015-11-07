@@ -6,7 +6,6 @@ public class MainClass {
 		PreprocessAttendance pra=new PreprocessAttendance();
 		pra.readCsv();
 		
-		
 		PrepateTrainigDataForCgpa cg=new PrepateTrainigDataForCgpa();
 		cg.create_training_Csv();
 
