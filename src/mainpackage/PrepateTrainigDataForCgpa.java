@@ -33,20 +33,25 @@ public class PrepateTrainigDataForCgpa{
 		fileWriter.append("\n");
 		int i=1;
 		int serial=100;
-		int prev_serial=2;
+		int prev_serial=0;
 		String[] tokens=null;
 		while ((line = fileReader.readLine()) != null) {
 			 String[] token = line.split(",");
 			 String c_complete,result_status,t_status;
 			 double a,t,c,s;
 			 int level=0,term=0;
+			 if(token.length>0)
+			 {
 			 serial=Integer.parseInt(token[0]);
+			
 			 level=Integer.parseInt(token[13]);
 			 term=Integer.parseInt(token[14]);
-			 if(level==4 && term ==2 || (level==5 && term ==2))
+			 if(((level==4 && term ==2 )|| (level==5 && term ==2)) && serial!=prev_serial)
 			 {
 			 
-			  fileWriter.append(tokens[0]+","+tokens[3]+","+tokens[15]+","+tokens[19]+"\n");					  
+			  fileWriter.append(token[0]+","+token[3]+","+token[15]+","+token[19]+"\n");	
+			  prev_serial=serial;
+			 }
 			 }
 			 if(serial==prev_serial)
 			 {
