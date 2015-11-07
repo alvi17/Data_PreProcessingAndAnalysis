@@ -27,7 +27,7 @@ public class PrepateTrainigDataForCgpa{
 		try {
 		String line = "";
 		fileReader = new BufferedReader(new FileReader(fileName));
-		fileWriter = new FileWriter("G:/training_data_for_male_female_cgpa.csv");
+		fileWriter = new FileWriter("training_data_for_male_female_cgpa.csv");
 		fileReader.readLine();
 		fileWriter.append("SID,Male_Female,Cgpa,Total_Credit_Completed,Result_status");
 		fileWriter.append("\n");
