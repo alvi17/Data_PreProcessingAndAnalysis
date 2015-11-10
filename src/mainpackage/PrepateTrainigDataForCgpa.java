@@ -53,8 +53,42 @@ public class PrepateTrainigDataForCgpa{
 			}
 			 if(((level==4 && term ==2 )|| (level==5 && term ==2)) && serial!=prev_serial)
 			 {
+				 double cgpa=Double.parseDouble(token[19]);
+				 int term_complete=Integer.parseInt(token[22]);
+				 if(cgpa>=3.8 && term_complete>=158)
+				 {
+					 result_status="Excellent";
+				 }
+				 else if(cgpa>=3.65 && cgpa<3.8 && term_complete>=158)
+				 {
+					 result_status="VeryGood";
+				 }
+				 else if(cgpa>=3.5 && cgpa<3.65 && term_complete>=158)
+				 {
+					 result_status="Good";
+				 }
+				 else if(cgpa>=3 && cgpa<=3.5 && term_complete>=158)
+				 {
+					 result_status="Moderate";
+				 }
+				 else if(cgpa>=3.5 && term_complete<158)
+				 {
+					 result_status="Moderate";
+				 }
+				 else if(cgpa<3 && term_complete>=158)
+				 {
+					 result_status="Poor";
+				 }
+				 else if(cgpa<3.5 && term_complete<158)
+				 {
+					 result_status="VeryPoor";
+				 }
+				 else
+				 {
+					 result_status="Moderate";
+				 }
 			 
-			  fileWriter.append(token[0]+","+token[5]+","+token[19]+","+token[22]+"\n");	
+			  fileWriter.append(token[0]+","+token[5]+","+token[19]+","+token[22]+","+result_status+"\n");	
 			  prev_serial=serial;
 			 }
 			 }
