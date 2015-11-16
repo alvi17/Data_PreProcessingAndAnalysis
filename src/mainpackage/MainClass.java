@@ -1,15 +1,14 @@
 package mainpackage;
 
+import java.io.FileNotFoundException;
+
 public class MainClass {
 
 	public static void main(String[] args) {
 		PreprocessAttendance pra=new PreprocessAttendance();
 		pra.readCsv();
+		CheckLines ch=new CheckLines();
 		
-		
-		PrepateTrainigDataForCgpa cg=new PrepateTrainigDataForCgpa();
-		cg.create_training_Csv();
-
 	}
 
 }

@@ -23,15 +23,18 @@ public class PreprocessAttendance {
 	String proFileName6="processed_sheet6.csv";
 	String proFileName7="processed_sheet7.csv";
 	String proFileName8="processed_sheet8.csv";
-	FileWriter fileWriter = null;
+	//FileWriter fileWriter = null;
 	public void readCsv()
 	{
 		BufferedReader fileReader=null;
-		//BufferedReader fileReaderIn=null;
+		FileWriter fileWriter = null;
 		try{
 			String line="";
 			fileReader =new BufferedReader(new FileReader(fileName1));
+			
 			fileWriter = new FileWriter(proFileName1);
+			
+			
 			line=fileReader.readLine();
 			String[] parts=line.split(",");
 			int[] rejected = new int[100];
@@ -41,6 +44,7 @@ public class PreprocessAttendance {
 			int flag=0;
 			for(int i=0;i<parts.length;i++){
 				//System.out.println(parts[i]);
+				
 				int count=0;
 				if(flag==0){
 					flag++;
@@ -48,10 +52,12 @@ public class PreprocessAttendance {
 					//BufferedReader fileReader=null;
 					fileReader =new BufferedReader(new FileReader(fileName1));
 					line=fileReader.readLine();
-					String[] party=line.split(",");
+					///String[] party=line.split(",");
 					
 				}
+				
 				while((line=fileReader.readLine())!=null){
+					
 					String[] token1=line.split(",");
 					if(!token1[i].equals("")){
 						count++;
@@ -59,20 +65,26 @@ public class PreprocessAttendance {
 					}
 				}
 				fileReader.close();
+				
 				if(count!=0){
+					
 					fileWriter.append(parts[i]);
 					if((parts.length-1)!=i){
+						
 						fileWriter.append(",");
 					}
 				}
 				else{
+					
 					rejected[indexReject]=i;
 					indexReject++;
 				}
 			}
+			
 			fileReader =new BufferedReader(new FileReader(fileName1));
 			line=fileReader.readLine();
 			int no=0;
+			int lineno=0;
 			while((line=fileReader.readLine())!=null)
 			{
 				no++;
@@ -83,7 +95,10 @@ public class PreprocessAttendance {
 				if(token.length!=parts.length){
 					lastElemCheck++;
 				}
+				lineno++;
+				
 				for(int i=0;i<token.length;i++){
+					
 					int flagReject=0;
 					for(int j=indRejStart;j<indexReject;j++){
 						if(rejected[j]==i){
@@ -104,8 +119,11 @@ public class PreprocessAttendance {
 					}else if(parts[i].equals("LETTERGRADE") && token[i].equals("")){
 						fileWriter.append("NR");
 					}else if(parts[i].equals("CLASSTESTMARKS") && !token[i].equals("")){
+						
 						fileWriter.append(token[i]);
+						
 					}else if(parts[i].equals("CLASSTESTMARKS") && token[i].equals("")){
+						
 						fileWriter.append("INF");
 					}else if(parts[i].equals("PARTAMARKS") && !token[i].equals("")){
 						fileWriter.append(token[i]);
@@ -131,10 +149,12 @@ public class PreprocessAttendance {
 					}else if(parts[i].equals("CGPA") && token[i].equals("")){
 						fileWriter.append("NR");
 					}else if(parts[i].equals("TOTCRHRCOMPLETED") && lastElemCheck==0){
+						//System.out.println(token[i]);
 						fileWriter.append(token[i]);
 						//System.out.println(parts[i]);
 					}else if(lastElemCheck!=0 && i==token.length-1){
 						fileWriter.append(token[i]);
+						//System.out.println(token[i]);
 						fileWriter.append(",NR,NR");
 						//System.out.println(no);
 					}else{
@@ -145,119 +165,1017 @@ public class PreprocessAttendance {
 					}
 				}
 			}
+			fileWriter.close();
+			fileReader.close();
 		}catch(Exception c){
 		}
-//		BufferedReader fileReader2=null;
-//		try{
-//			String line="";
-//			fileReader2 =new BufferedReader(new FileReader(fileName2));
-//			fileReader2.readLine();
-//			//System.out.println("asd");
-//			while((line=fileReader2.readLine())!=null)
-//			{
-//				String[] token=line.split(",");
-//				if(token[11].equals(null)){
-//				}
-//			}
-//		}catch(Exception c){
-//			
-//		}
-//		BufferedReader fileReader3=null;
-//		try{
-//			String line="";
-//			fileReader3 =new BufferedReader(new FileReader(fileName3));
-//			fileReader3.readLine();
-//			//System.out.println("asd");
-//			while((line=fileReader3.readLine())!=null)
-//			{
-//				String[] token=line.split(",");
-//				if(token[11].equals(null)){
-//
-//				}
-//			}
-//		}catch(Exception c){
-//			
-//		}
-//		BufferedReader fileReader4=null;
-//		try{
-//			String line="";
-//			fileReader4 =new BufferedReader(new FileReader(fileName4));
-//			fileReader4.readLine();
-//			//System.out.println("asd");
-//			while((line=fileReader4.readLine())!=null)
-//			{
-//				String[] token=line.split(",");
-//				if(token[11].equals(null)){
-//					
-//				}
-//			}
-//		}catch(Exception c){
-//			
-//		}
-//		BufferedReader fileReader5=null;
-//		try{
-//			String line="";
-//			fileReader5 =new BufferedReader(new FileReader(fileName5));
-//			fileReader5.readLine();
-//			//System.out.println("asd");
-//			while((line=fileReader5.readLine())!=null)
-//			{
-//				String[] token=line.split(",");
-//				if(token[11].equals(null)){
-//					
-//				}
-//			}
-//		}catch(Exception c){
-//			
-//		}
-//		BufferedReader fileReader6=null;
-//		try{
-//			String line="";
-//			fileReader6 =new BufferedReader(new FileReader(fileName6));
-//			fileReader6.readLine();
-//			//System.out.println("asd");
-//			while((line=fileReader6.readLine())!=null)
-//			{
-//				String[] token=line.split(",");
-//				if(token[11].equals(null)){
-//					
-//				}
-//			}
-//		}catch(Exception c){
-//			
-//		}
-//		BufferedReader fileReader7=null;
-//		try{
-//			String line="";
-//			fileReader7 =new BufferedReader(new FileReader(fileName7));
-//			fileReader7.readLine();
-//			//System.out.println("asd");
-//			while((line=fileReader7.readLine())!=null)
-//			{
-//				
-//				String[] token=line.split(",");
-//				if(token[11].equals(null)){
-//					
-//				}
-//			}
-//		}catch(Exception c){
-//			
-//		}
-//		BufferedReader fileReader8=null;
-//		try{
-//			String line="";
-//			fileReader8 =new BufferedReader(new FileReader(fileName8));
-//			fileReader8.readLine();
-//			//System.out.println("asd");
-//			while((line=fileReader8.readLine())!=null)
-//			{
-//				String[] token=line.split(",");
-//				if(token[11].equals(null)){
-//					
-//				}
-//			}
-//		}catch(Exception c){
-//			
-//		}
+		//sheet2 process
+		try{
+			String line="";
+			fileReader =new BufferedReader(new FileReader(fileName2));
+			
+			fileWriter = new FileWriter(proFileName2);
+			
+			
+			line=fileReader.readLine();
+			String[] parts=line.split(",");
+			int[] rejected = new int[100];
+			int indexReject=0;
+			int indRejStart=0;
+			//System.out.println(parts.length);
+			int flag=0;
+			for(int i=0;i<parts.length;i++){
+				//System.out.println(parts[i]);
+				
+				int count=0;
+				if(flag==0){
+					flag++;
+				}else{
+					//BufferedReader fileReader=null;
+					fileReader =new BufferedReader(new FileReader(fileName2));
+					line=fileReader.readLine();
+					///String[] party=line.split(",");
+					
+				}
+				
+				while((line=fileReader.readLine())!=null){
+					
+					String[] token1=line.split(",");
+					if(!token1[i].equals("")){
+						count++;
+						break;
+					}
+				}
+				fileReader.close();
+				
+				if(count!=0){
+					
+					
+					fileWriter.append(parts[i]);
+					if((parts.length-1)!=i){
+						
+						fileWriter.append(",");
+					}
+				}
+				else{
+					
+					rejected[indexReject]=i;
+					indexReject++;
+				}
+			}
+			
+			fileReader =new BufferedReader(new FileReader(fileName2));
+			line=fileReader.readLine();
+			int no=0;
+			int lineno=0;
+			while((line=fileReader.readLine())!=null)
+			{
+				no++;
+				int lastElemCheck=0;
+				indRejStart=0;
+				fileWriter.append("\n");
+				String[] token=line.split(",");
+				if(token.length!=parts.length){
+					lastElemCheck++;
+				}
+				lineno++;
+				
+				for(int i=0;i<token.length;i++){
+					
+					int flagReject=0;
+					for(int j=indRejStart;j<indexReject;j++){
+						if(rejected[j]==i){
+							flagReject++;
+							indRejStart++;
+							continue;
+						}
+					}
+					if(flagReject>0){
+						continue;
+					}
+					if(parts[i].equals("CLASSATTENDENCEMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("CLASSATTENDENCEMARKS") && token[i].equals("")){
+						fileWriter.append("INF");
+					}else if(parts[i].equals("LETTERGRADE") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("LETTERGRADE") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CLASSTESTMARKS") && !token[i].equals("")){
+						
+						fileWriter.append(token[i]);
+						
+					}else if(parts[i].equals("CLASSTESTMARKS") && token[i].equals("")){
+						
+						fileWriter.append("INF");
+					}else if(parts[i].equals("PARTAMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("PARTAMARKS") && token[i].equals("")){
+						fileWriter.append("NA");
+					}else if(parts[i].equals("PARTBMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("PARTBMARKS") && token[i].equals("")){
+						fileWriter.append("NA");
+					}else if(parts[i].equals("TOTALNUMBER") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("TOTALNUMBER") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CRHREARNED") && lastElemCheck==0){
+						fileWriter.append(token[i]);
+						//System.out.println(parts[i]);
+					}else if(parts[i].equals("GPA") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("GPA") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CGPA") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("CGPA") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("TOTCRHRCOMPLETED") && lastElemCheck==0){
+						//System.out.println(token[i]);
+						fileWriter.append(token[i]);
+						//System.out.println(parts[i]);
+					}else if(lastElemCheck!=0 && i==token.length-1){
+						fileWriter.append(token[i]);
+						//System.out.println(token[i]);
+						fileWriter.append(",NR,NR");
+						//System.out.println(no);
+					}else{
+						fileWriter.append(token[i]);
+					}
+					if((token.length-1)!=i){
+						fileWriter.append(",");
+					}
+				}
+			}
+			fileWriter.close();
+			fileReader.close();
+		}catch(Exception c){
+		}
+		//sheet 3 process
+		try{
+			String line="";
+			fileReader =new BufferedReader(new FileReader(fileName3));
+			
+			fileWriter = new FileWriter(proFileName3);
+			
+			
+			line=fileReader.readLine();
+			String[] parts=line.split(",");
+			int[] rejected = new int[100];
+			int indexReject=0;
+			int indRejStart=0;
+			//System.out.println(parts.length);
+			int flag=0;
+			for(int i=0;i<parts.length;i++){
+				//System.out.println(parts[i]);
+				
+				int count=0;
+				if(flag==0){
+					flag++;
+				}else{
+					//BufferedReader fileReader=null;
+					fileReader =new BufferedReader(new FileReader(fileName3));
+					line=fileReader.readLine();
+					///String[] party=line.split(",");
+					
+				}
+				
+				while((line=fileReader.readLine())!=null){
+					
+					String[] token1=line.split(",");
+					if(!token1[i].equals("")){
+						count++;
+						break;
+					}
+				}
+				fileReader.close();
+				
+				if(count!=0){
+					
+					
+					fileWriter.append(parts[i]);
+					if((parts.length-1)!=i){
+						
+						fileWriter.append(",");
+					}
+				}
+				else{
+					
+					rejected[indexReject]=i;
+					indexReject++;
+				}
+			}
+			
+			fileReader =new BufferedReader(new FileReader(fileName3));
+			line=fileReader.readLine();
+			int no=0;
+			int lineno=0;
+			while((line=fileReader.readLine())!=null)
+			{
+				no++;
+				int lastElemCheck=0;
+				indRejStart=0;
+				fileWriter.append("\n");
+				String[] token=line.split(",");
+				if(token.length!=parts.length){
+					lastElemCheck++;
+				}
+				lineno++;
+				
+				for(int i=0;i<token.length;i++){
+					
+					int flagReject=0;
+					for(int j=indRejStart;j<indexReject;j++){
+						if(rejected[j]==i){
+							flagReject++;
+							indRejStart++;
+							continue;
+						}
+					}
+					if(flagReject>0){
+						continue;
+					}
+					if(parts[i].equals("CLASSATTENDENCEMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("CLASSATTENDENCEMARKS") && token[i].equals("")){
+						fileWriter.append("INF");
+					}else if(parts[i].equals("LETTERGRADE") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("LETTERGRADE") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CLASSTESTMARKS") && !token[i].equals("")){
+						
+						fileWriter.append(token[i]);
+						
+					}else if(parts[i].equals("CLASSTESTMARKS") && token[i].equals("")){
+						
+						fileWriter.append("INF");
+					}else if(parts[i].equals("PARTAMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("PARTAMARKS") && token[i].equals("")){
+						fileWriter.append("NA");
+					}else if(parts[i].equals("PARTBMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("PARTBMARKS") && token[i].equals("")){
+						fileWriter.append("NA");
+					}else if(parts[i].equals("TOTALNUMBER") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("TOTALNUMBER") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CRHREARNED") && lastElemCheck==0){
+						fileWriter.append(token[i]);
+						//System.out.println(parts[i]);
+					}else if(parts[i].equals("GPA") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("GPA") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CGPA") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("CGPA") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("TOTCRHRCOMPLETED") && lastElemCheck==0){
+						//System.out.println(token[i]);
+						fileWriter.append(token[i]);
+						//System.out.println(parts[i]);
+					}else if(lastElemCheck!=0 && i==token.length-1){
+						fileWriter.append(token[i]);
+						//System.out.println(token[i]);
+						fileWriter.append(",NR,NR");
+						//System.out.println(no);
+					}else{
+						fileWriter.append(token[i]);
+					}
+					if((token.length-1)!=i){
+						fileWriter.append(",");
+					}
+				}
+			}
+			fileWriter.close();
+			fileReader.close();
+		}catch(Exception c){
+		}
+		/*
+		//sheet 4 process
+		try{
+			String line="";
+			fileReader =new BufferedReader(new FileReader(fileName4));
+			
+			fileWriter = new FileWriter(proFileName4);
+			
+			
+			line=fileReader.readLine();
+			String[] parts=line.split(",");
+			int[] rejected = new int[100];
+			int indexReject=0;
+			int indRejStart=0;
+			//System.out.println(parts.length);
+			int flag=0;
+			for(int i=0;i<parts.length;i++){
+				//System.out.println(parts[i]);
+				
+				int count=0;
+				if(flag==0){
+					flag++;
+				}else{
+					//BufferedReader fileReader=null;
+					fileReader =new BufferedReader(new FileReader(fileName4));
+					line=fileReader.readLine();
+					///String[] party=line.split(",");
+					
+				}
+				
+				while((line=fileReader.readLine())!=null){
+					
+					String[] token1=line.split(",");
+					if(!token1[i].equals("")){
+						count++;
+						break;
+					}
+				}
+				fileReader.close();
+				
+				if(count!=0){
+					
+					
+					fileWriter.append(parts[i]);
+					if((parts.length-1)!=i){
+						
+						fileWriter.append(",");
+					}
+				}
+				else{
+					
+					rejected[indexReject]=i;
+					indexReject++;
+				}
+			}
+			
+			fileReader =new BufferedReader(new FileReader(fileName4));
+			line=fileReader.readLine();
+			int no=0;
+			int lineno=0;
+			while((line=fileReader.readLine())!=null)
+			{
+				no++;
+				int lastElemCheck=0;
+				indRejStart=0;
+				fileWriter.append("\n");
+				String[] token=line.split(",");
+				if(token.length!=parts.length){
+					lastElemCheck++;
+				}
+				lineno++;
+				
+				for(int i=0;i<token.length;i++){
+					
+					int flagReject=0;
+					for(int j=indRejStart;j<indexReject;j++){
+						if(rejected[j]==i){
+							flagReject++;
+							indRejStart++;
+							continue;
+						}
+					}
+					if(flagReject>0){
+						continue;
+					}
+					if(parts[i].equals("CLASSATTENDENCEMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("CLASSATTENDENCEMARKS") && token[i].equals("")){
+						fileWriter.append("INF");
+					}else if(parts[i].equals("LETTERGRADE") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("LETTERGRADE") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CLASSTESTMARKS") && !token[i].equals("")){
+						
+						fileWriter.append(token[i]);
+						
+					}else if(parts[i].equals("CLASSTESTMARKS") && token[i].equals("")){
+						
+						fileWriter.append("INF");
+					}else if(parts[i].equals("PARTAMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("PARTAMARKS") && token[i].equals("")){
+						fileWriter.append("NA");
+					}else if(parts[i].equals("PARTBMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("PARTBMARKS") && token[i].equals("")){
+						fileWriter.append("NA");
+					}else if(parts[i].equals("TOTALNUMBER") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("TOTALNUMBER") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CRHREARNED") && lastElemCheck==0){
+						fileWriter.append(token[i]);
+						//System.out.println(parts[i]);
+					}else if(parts[i].equals("GPA") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("GPA") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CGPA") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("CGPA") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("TOTCRHRCOMPLETED") && lastElemCheck==0){
+						//System.out.println(token[i]);
+						fileWriter.append(token[i]);
+						//System.out.println(parts[i]);
+					}else if(lastElemCheck!=0 && i==token.length-1){
+						fileWriter.append(token[i]);
+						//System.out.println(token[i]);
+						fileWriter.append(",NR,NR");
+						//System.out.println(no);
+					}else{
+						fileWriter.append(token[i]);
+					}
+					if((token.length-1)!=i){
+						fileWriter.append(",");
+					}
+				}
+			}
+			fileWriter.close();
+			fileReader.close();
+		}catch(Exception c){
+		}
+		
+		//sheet 5 process
+		
+		try{
+			String line="";
+			fileReader =new BufferedReader(new FileReader(fileName5));
+			
+			fileWriter = new FileWriter(proFileName5);
+			
+			
+			line=fileReader.readLine();
+			String[] parts=line.split(",");
+			int[] rejected = new int[100];
+			int indexReject=0;
+			int indRejStart=0;
+			//System.out.println(parts.length);
+			int flag=0;
+			for(int i=0;i<parts.length;i++){
+				//System.out.println(parts[i]);
+				
+				int count=0;
+				if(flag==0){
+					flag++;
+				}else{
+					//BufferedReader fileReader=null;
+					fileReader =new BufferedReader(new FileReader(fileName5));
+					line=fileReader.readLine();
+					///String[] party=line.split(",");
+					
+				}
+				
+				while((line=fileReader.readLine())!=null){
+					
+					String[] token1=line.split(",");
+					if(!token1[i].equals("")){
+						count++;
+						break;
+					}
+				}
+				fileReader.close();
+				
+				if(count!=0){
+					
+					
+					fileWriter.append(parts[i]);
+					if((parts.length-1)!=i){
+						
+						fileWriter.append(",");
+					}
+				}
+				else{
+					
+					rejected[indexReject]=i;
+					indexReject++;
+				}
+			}
+			
+			fileReader =new BufferedReader(new FileReader(fileName5));
+			line=fileReader.readLine();
+			int no=0;
+			int lineno=0;
+			while((line=fileReader.readLine())!=null)
+			{
+				no++;
+				int lastElemCheck=0;
+				indRejStart=0;
+				fileWriter.append("\n");
+				String[] token=line.split(",");
+				if(token.length!=parts.length){
+					lastElemCheck++;
+				}
+				lineno++;
+				
+				for(int i=0;i<token.length;i++){
+					
+					int flagReject=0;
+					for(int j=indRejStart;j<indexReject;j++){
+						if(rejected[j]==i){
+							flagReject++;
+							indRejStart++;
+							continue;
+						}
+					}
+					if(flagReject>0){
+						continue;
+					}
+					if(parts[i].equals("CLASSATTENDENCEMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("CLASSATTENDENCEMARKS") && token[i].equals("")){
+						fileWriter.append("INF");
+					}else if(parts[i].equals("LETTERGRADE") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("LETTERGRADE") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CLASSTESTMARKS") && !token[i].equals("")){
+						
+						fileWriter.append(token[i]);
+						
+					}else if(parts[i].equals("CLASSTESTMARKS") && token[i].equals("")){
+						
+						fileWriter.append("INF");
+					}else if(parts[i].equals("PARTAMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("PARTAMARKS") && token[i].equals("")){
+						fileWriter.append("NA");
+					}else if(parts[i].equals("PARTBMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("PARTBMARKS") && token[i].equals("")){
+						fileWriter.append("NA");
+					}else if(parts[i].equals("TOTALNUMBER") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("TOTALNUMBER") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CRHREARNED") && lastElemCheck==0){
+						fileWriter.append(token[i]);
+						//System.out.println(parts[i]);
+					}else if(parts[i].equals("GPA") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("GPA") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CGPA") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("CGPA") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("TOTCRHRCOMPLETED") && lastElemCheck==0){
+						//System.out.println(token[i]);
+						fileWriter.append(token[i]);
+						//System.out.println(parts[i]);
+					}else if(lastElemCheck!=0 && i==token.length-1){
+						fileWriter.append(token[i]);
+						//System.out.println(token[i]);
+						fileWriter.append(",NR,NR");
+						//System.out.println(no);
+					}else{
+						fileWriter.append(token[i]);
+					}
+					if((token.length-1)!=i){
+						fileWriter.append(",");
+					}
+				}
+			}
+			fileWriter.close();
+			fileReader.close();
+		}catch(Exception c){
+		}
+		
+		//sheet 6 process
+		try{
+			String line="";
+			fileReader =new BufferedReader(new FileReader(fileName6));
+			
+			fileWriter = new FileWriter(proFileName6);
+			
+			
+			line=fileReader.readLine();
+			String[] parts=line.split(",");
+			int[] rejected = new int[100];
+			int indexReject=0;
+			int indRejStart=0;
+			//System.out.println(parts.length);
+			int flag=0;
+			for(int i=0;i<parts.length;i++){
+				//System.out.println(parts[i]);
+				
+				int count=0;
+				if(flag==0){
+					flag++;
+				}else{
+					//BufferedReader fileReader=null;
+					fileReader =new BufferedReader(new FileReader(fileName6));
+					line=fileReader.readLine();
+					///String[] party=line.split(",");
+					
+				}
+				
+				while((line=fileReader.readLine())!=null){
+					
+					String[] token1=line.split(",");
+					if(!token1[i].equals("")){
+						count++;
+						break;
+					}
+				}
+				fileReader.close();
+				
+				if(count!=0){
+					
+					
+					fileWriter.append(parts[i]);
+					if((parts.length-1)!=i){
+						
+						fileWriter.append(",");
+					}
+				}
+				else{
+					
+					rejected[indexReject]=i;
+					indexReject++;
+				}
+			}
+			
+			fileReader =new BufferedReader(new FileReader(fileName6));
+			line=fileReader.readLine();
+			int no=0;
+			int lineno=0;
+			while((line=fileReader.readLine())!=null)
+			{
+				no++;
+				int lastElemCheck=0;
+				indRejStart=0;
+				fileWriter.append("\n");
+				String[] token=line.split(",");
+				if(token.length!=parts.length){
+					lastElemCheck++;
+				}
+				lineno++;
+				
+				for(int i=0;i<token.length;i++){
+					
+					int flagReject=0;
+					for(int j=indRejStart;j<indexReject;j++){
+						if(rejected[j]==i){
+							flagReject++;
+							indRejStart++;
+							continue;
+						}
+					}
+					if(flagReject>0){
+						continue;
+					}
+					if(parts[i].equals("CLASSATTENDENCEMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("CLASSATTENDENCEMARKS") && token[i].equals("")){
+						fileWriter.append("INF");
+					}else if(parts[i].equals("LETTERGRADE") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("LETTERGRADE") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CLASSTESTMARKS") && !token[i].equals("")){
+						
+						fileWriter.append(token[i]);
+						
+					}else if(parts[i].equals("CLASSTESTMARKS") && token[i].equals("")){
+						
+						fileWriter.append("INF");
+					}else if(parts[i].equals("PARTAMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("PARTAMARKS") && token[i].equals("")){
+						fileWriter.append("NA");
+					}else if(parts[i].equals("PARTBMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("PARTBMARKS") && token[i].equals("")){
+						fileWriter.append("NA");
+					}else if(parts[i].equals("TOTALNUMBER") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("TOTALNUMBER") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CRHREARNED") && lastElemCheck==0){
+						fileWriter.append(token[i]);
+						//System.out.println(parts[i]);
+					}else if(parts[i].equals("GPA") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("GPA") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CGPA") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("CGPA") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("TOTCRHRCOMPLETED") && lastElemCheck==0){
+						//System.out.println(token[i]);
+						fileWriter.append(token[i]);
+						//System.out.println(parts[i]);
+					}else if(lastElemCheck!=0 && i==token.length-1){
+						fileWriter.append(token[i]);
+						//System.out.println(token[i]);
+						fileWriter.append(",NR,NR");
+						//System.out.println(no);
+					}else{
+						fileWriter.append(token[i]);
+					}
+					if((token.length-1)!=i){
+						fileWriter.append(",");
+					}
+				}
+			}
+			fileWriter.close();
+			fileReader.close();
+		}catch(Exception c){
+		}
+		
+		///sheet 7 process
+		try{
+			String line="";
+			fileReader =new BufferedReader(new FileReader(fileName7));
+			
+			fileWriter = new FileWriter(proFileName7);
+			
+			
+			line=fileReader.readLine();
+			String[] parts=line.split(",");
+			int[] rejected = new int[100];
+			int indexReject=0;
+			int indRejStart=0;
+			//System.out.println(parts.length);
+			int flag=0;
+			for(int i=0;i<parts.length;i++){
+				//System.out.println(parts[i]);
+				
+				int count=0;
+				if(flag==0){
+					flag++;
+				}else{
+					//BufferedReader fileReader=null;
+					fileReader =new BufferedReader(new FileReader(fileName7));
+					line=fileReader.readLine();
+					///String[] party=line.split(",");
+					
+				}
+				
+				while((line=fileReader.readLine())!=null){
+					
+					String[] token1=line.split(",");
+					if(!token1[i].equals("")){
+						count++;
+						break;
+					}
+				}
+				fileReader.close();
+				
+				if(count!=0){
+					
+					
+					fileWriter.append(parts[i]);
+					if((parts.length-1)!=i){
+						
+						fileWriter.append(",");
+					}
+				}
+				else{
+					
+					rejected[indexReject]=i;
+					indexReject++;
+				}
+			}
+			
+			fileReader =new BufferedReader(new FileReader(fileName7));
+			line=fileReader.readLine();
+			int no=0;
+			int lineno=0;
+			while((line=fileReader.readLine())!=null)
+			{
+				no++;
+				int lastElemCheck=0;
+				indRejStart=0;
+				fileWriter.append("\n");
+				String[] token=line.split(",");
+				if(token.length!=parts.length){
+					lastElemCheck++;
+				}
+				lineno++;
+				
+				for(int i=0;i<token.length;i++){
+					
+					int flagReject=0;
+					for(int j=indRejStart;j<indexReject;j++){
+						if(rejected[j]==i){
+							flagReject++;
+							indRejStart++;
+							continue;
+						}
+					}
+					if(flagReject>0){
+						continue;
+					}
+					if(parts[i].equals("CLASSATTENDENCEMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("CLASSATTENDENCEMARKS") && token[i].equals("")){
+						fileWriter.append("INF");
+					}else if(parts[i].equals("LETTERGRADE") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("LETTERGRADE") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CLASSTESTMARKS") && !token[i].equals("")){
+						
+						fileWriter.append(token[i]);
+						
+					}else if(parts[i].equals("CLASSTESTMARKS") && token[i].equals("")){
+						
+						fileWriter.append("INF");
+					}else if(parts[i].equals("PARTAMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("PARTAMARKS") && token[i].equals("")){
+						fileWriter.append("NA");
+					}else if(parts[i].equals("PARTBMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("PARTBMARKS") && token[i].equals("")){
+						fileWriter.append("NA");
+					}else if(parts[i].equals("TOTALNUMBER") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("TOTALNUMBER") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CRHREARNED") && lastElemCheck==0){
+						fileWriter.append(token[i]);
+						//System.out.println(parts[i]);
+					}else if(parts[i].equals("GPA") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("GPA") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CGPA") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("CGPA") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("TOTCRHRCOMPLETED") && lastElemCheck==0){
+						//System.out.println(token[i]);
+						fileWriter.append(token[i]);
+						//System.out.println(parts[i]);
+					}else if(lastElemCheck!=0 && i==token.length-1){
+						fileWriter.append(token[i]);
+						//System.out.println(token[i]);
+						fileWriter.append(",NR,NR");
+						//System.out.println(no);
+					}else{
+						fileWriter.append(token[i]);
+					}
+					if((token.length-1)!=i){
+						fileWriter.append(",");
+					}
+				}
+			}
+			fileWriter.close();
+			fileReader.close();
+		}catch(Exception c){
+		}
+		//sheet 8 process
+		try{
+			String line="";
+			fileReader =new BufferedReader(new FileReader(fileName8));
+			
+			fileWriter = new FileWriter(proFileName8);
+			
+			
+			line=fileReader.readLine();
+			String[] parts=line.split(",");
+			int[] rejected = new int[100];
+			int indexReject=0;
+			int indRejStart=0;
+			//System.out.println(parts.length);
+			int flag=0;
+			for(int i=0;i<parts.length;i++){
+				//System.out.println(parts[i]);
+				
+				int count=0;
+				if(flag==0){
+					flag++;
+				}else{
+					//BufferedReader fileReader=null;
+					fileReader =new BufferedReader(new FileReader(fileName8));
+					line=fileReader.readLine();
+					///String[] party=line.split(",");
+					
+				}
+				
+				while((line=fileReader.readLine())!=null){
+					
+					String[] token1=line.split(",");
+					if(!token1[i].equals("")){
+						count++;
+						break;
+					}
+				}
+				fileReader.close();
+				
+				if(count!=0){
+					
+					
+					fileWriter.append(parts[i]);
+					if((parts.length-1)!=i){
+						
+						fileWriter.append(",");
+					}
+				}
+				else{
+					
+					rejected[indexReject]=i;
+					indexReject++;
+				}
+			}
+			
+			fileReader =new BufferedReader(new FileReader(fileName8));
+			line=fileReader.readLine();
+			int no=0;
+			int lineno=0;
+			while((line=fileReader.readLine())!=null)
+			{
+				no++;
+				int lastElemCheck=0;
+				indRejStart=0;
+				fileWriter.append("\n");
+				String[] token=line.split(",");
+				if(token.length!=parts.length){
+					lastElemCheck++;
+				}
+				lineno++;
+				
+				for(int i=0;i<token.length;i++){
+					
+					int flagReject=0;
+					for(int j=indRejStart;j<indexReject;j++){
+						if(rejected[j]==i){
+							flagReject++;
+							indRejStart++;
+							continue;
+						}
+					}
+					if(flagReject>0){
+						continue;
+					}
+					if(parts[i].equals("CLASSATTENDENCEMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("CLASSATTENDENCEMARKS") && token[i].equals("")){
+						fileWriter.append("INF");
+					}else if(parts[i].equals("LETTERGRADE") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("LETTERGRADE") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CLASSTESTMARKS") && !token[i].equals("")){
+						
+						fileWriter.append(token[i]);
+						
+					}else if(parts[i].equals("CLASSTESTMARKS") && token[i].equals("")){
+						
+						fileWriter.append("INF");
+					}else if(parts[i].equals("PARTAMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("PARTAMARKS") && token[i].equals("")){
+						fileWriter.append("NA");
+					}else if(parts[i].equals("PARTBMARKS") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("PARTBMARKS") && token[i].equals("")){
+						fileWriter.append("NA");
+					}else if(parts[i].equals("TOTALNUMBER") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("TOTALNUMBER") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CRHREARNED") && lastElemCheck==0){
+						fileWriter.append(token[i]);
+						//System.out.println(parts[i]);
+					}else if(parts[i].equals("GPA") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("GPA") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("CGPA") && !token[i].equals("")){
+						fileWriter.append(token[i]);
+					}else if(parts[i].equals("CGPA") && token[i].equals("")){
+						fileWriter.append("NR");
+					}else if(parts[i].equals("TOTCRHRCOMPLETED") && lastElemCheck==0){
+						//System.out.println(token[i]);
+						fileWriter.append(token[i]);
+						//System.out.println(parts[i]);
+					}else if(lastElemCheck!=0 && i==token.length-1){
+						fileWriter.append(token[i]);
+						//System.out.println(token[i]);
+						fileWriter.append(",NR,NR");
+						//System.out.println(no);
+					}else{
+						fileWriter.append(token[i]);
+					}
+					if((token.length-1)!=i){
+						fileWriter.append(",");
+					}
+				}
+			}
+			fileWriter.close();
+			fileReader.close();
+		}catch(Exception c){
+		}*/
+		
+		
 	}
 }
