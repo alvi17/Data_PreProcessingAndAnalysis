@@ -5,11 +5,11 @@ import java.io.FileNotFoundException;
 public class MainClass {
 
 	public static void main(String[] args) {
-<<<<<<< HEAD
+
 		PreprocessAttendance pra=new PreprocessAttendance();
 		pra.readCsv();
 		CheckLines ch=new CheckLines();
-=======
+
 //		PreprocessAttendance pra=new PreprocessAttendance();
 //		pra.readCsv();
 //		
@@ -21,8 +21,8 @@ public class MainClass {
 
 		FindInfoGain info=new FindInfoGain();
 		info.updateClassLabels();
-		System.out.println("InfoD= : "+info.calculateInfoD()+" InfomaleFemale : "+info.calculateInfoMale_Female()+" InfoCreditCompleted: "+info.calculateCreditCompleteInfo());
->>>>>>> 52106de4c773365de1262b41fb521aa5ca021332
+		System.out.println("InfoD = : "+info.calculateInfoD()+" InfomaleFemale : "+info.calculateInfoMale_Female()+" InfoCreditCompleted: "+info.calculateCreditCompleteInfo());
+
 		
 	}
 
