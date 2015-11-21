@@ -24,7 +24,7 @@ public class PrepateTrainigDataForCgpa{
 		List totalCredit=new ArrayList();
 		List completedCredit=new ArrayList();
 		List cgpaList=new ArrayList();
-		try {
+		try{
 		String line = "";
 		fileReader = new BufferedReader(new FileReader(fileName));
 		fileWriter = new FileWriter("training_data_for_male_female_cgpa.csv");
@@ -51,7 +51,7 @@ public class PrepateTrainigDataForCgpa{
 			{
 			 term=Integer.parseInt(token[17]);
 			}
-			 if(((level==4 && term ==2 )|| (level==5 && term ==2)) && serial!=prev_serial)
+			if(((level==4 && term ==2 )|| (level==5 && term ==2)) && serial!=prev_serial)
 			 {
 				 double cgpa=Double.parseDouble(token[19]);
 				 int term_complete=Integer.parseInt(token[22]);
@@ -99,7 +99,6 @@ public class PrepateTrainigDataForCgpa{
 			 			 
 //			 if(serial!=prev_serial)
 //			 {
-//				 
 //				 prev_serial=serial;
 //				 if(tokens.length>0)
 //				 {
@@ -108,15 +107,13 @@ public class PrepateTrainigDataForCgpa{
 //					  float term_count=Float.parseFloat(tokens[3]);
 //					  float credit_completed=Float.parseFloat(tokens[4]);
 //					  float cgpa=Float.parseFloat(tokens[5]);
-					  //				 }
+//				 }
 			 
-			
 			 i++;
 			 System.out.println("i= "+i);
 			
 			 }
-		
-		
+
 		}
 		catch(Exception e)
 		{

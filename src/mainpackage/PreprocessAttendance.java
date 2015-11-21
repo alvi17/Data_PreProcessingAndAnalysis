@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class PreprocessAttendance {
+	
 	String fileName1="sheet1.csv";
 	String fileName2="sheet2.csv";
 	String fileName3="sheet3.csv";
@@ -15,6 +16,7 @@ public class PreprocessAttendance {
 	String fileName6="sheet6.csv";
 	String fileName7="sheet7.csv";
 	String fileName8="sheet8.csv";
+	
 	String proFileName1="processed_sheet1.csv";
 	String proFileName2="processed_sheet2.csv";
 	String proFileName3="processed_sheet3.csv";
@@ -23,6 +25,7 @@ public class PreprocessAttendance {
 	String proFileName6="processed_sheet6.csv";
 	String proFileName7="processed_sheet7.csv";
 	String proFileName8="processed_sheet8.csv";
+	
 	//FileWriter fileWriter = null;
 	public void readCsv()
 	{
@@ -64,13 +67,11 @@ public class PreprocessAttendance {
 						break;
 					}
 				}
-				fileReader.close();
-				
+				fileReader.close();				
 				if(count!=0){
 					
 					fileWriter.append(parts[i]);
-					if((parts.length-1)!=i){
-						
+					if((parts.length-1)!=i){						
 						fileWriter.append(",");
 					}
 				}
@@ -453,7 +454,8 @@ public class PreprocessAttendance {
 			}
 			fileWriter.close();
 			fileReader.close();
-		}catch(Exception c){
+		}
+		catch(Exception c){
 		}
 		/*
 		//sheet 4 process
