@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Data_PreProcessing_CreditColumn {
+	
 	String fileName="processed_sheet5.csv";
 	FileWriter fileWriter = null;
 	
@@ -16,20 +17,23 @@ public class Data_PreProcessing_CreditColumn {
 		super();
 	}
 	
-	
 	public void create_Credit_Csv()
 	{
 		BufferedReader fileReader = null;
-		 int num=0;
+		int num=0;
+		
 		List id=new ArrayList();
 		List attendance=new ArrayList();
 		List totalCredit=new ArrayList();
 		List completedCredit=new ArrayList();
 		List cgpaList=new ArrayList();
+		
 		int sessionalCourse=0;
 		int serial_num=0;
 		int non_credit=0;
+		
 		try{
+			
 		String line = "";
 		fileReader = new BufferedReader(new FileReader(fileName));
 		fileWriter = new FileWriter("processed_sheet5_withCredit.csv");
@@ -42,11 +46,11 @@ public class Data_PreProcessing_CreditColumn {
 		int serial=100;
 		int prev_serial=0;
 		String[] tokens=null;
-		 String grades="";		 
-		 String courseName="";
-		 double totalNumber=0;
-		 int sessional=0;
-		 double credit=0;
+		String grades="";		 
+		String courseName="";
+		double totalNumber=0;
+		int sessional=0;
+		double credit=0;
 		 
 		while ((line = fileReader.readLine()) != null){
 			 String[] token = line.split(",");

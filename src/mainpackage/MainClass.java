@@ -23,8 +23,11 @@ public class MainClass {
 //		info.updateClassLabels();
 //		System.out.println("InfoD = : "+info.calculateInfoD()+" InfomaleFemale : "+info.calculateInfoMale_Female()+" InfoCreditCompleted: "+info.calculateCreditCompleteInfo());
 
-		Data_PreProcessing_CreditColumn dp=new Data_PreProcessing_CreditColumn();
-		dp.create_Credit_Csv();
+//		Data_PreProcessing_CreditColumn dp=new Data_PreProcessing_CreditColumn();
+//		dp.create_Credit_Csv();
+
+		Calulate_Info_Cgpa c=new Calulate_Info_Cgpa();
+		c.calculate();
 		
 	}
 

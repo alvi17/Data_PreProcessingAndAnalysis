@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PrepateTrainigDataForCgpa{
-	String fileName="sheet1.csv";
+	String fileName="sheet2.csv";
 	FileWriter fileWriter = null;
 	
 	public PrepateTrainigDataForCgpa()
@@ -27,16 +27,18 @@ public class PrepateTrainigDataForCgpa{
 		try{
 		String line = "";
 		fileReader = new BufferedReader(new FileReader(fileName));
-		fileWriter = new FileWriter("training_data_for_male_female_cgpa.csv");
+		fileWriter = new FileWriter("training_data_for_male_female_cgpa2.csv");
 		fileReader.readLine();
-		fileWriter.append("SID,Male_Female,Cgpa,Total_Credit_Completed,Result_status");
+		fileWriter.append("SID,Male_Female,Cgpa,Total_Credit_Completed");
 		fileWriter.append("\n");
 		int i=1;
 		int serial=100;
 		int prev_serial=0;
 		String[] tokens=null;
-		while ((line = fileReader.readLine()) != null) {
+		while ((line = fileReader.readLine()) != null) {	
+				
 			 String[] token = line.split(",");
+			 System.out.println(token[0]);
 			 String c_complete,result_status,t_status;
 			 double a,t,c,s;
 			 int level=0,term=0;
@@ -52,43 +54,43 @@ public class PrepateTrainigDataForCgpa{
 			 term=Integer.parseInt(token[17]);
 			}
 			if(((level==4 && term ==2 )|| (level==5 && term ==2)) && serial!=prev_serial)
-			 {
-				 double cgpa=Double.parseDouble(token[19]);
-				 int term_complete=Integer.parseInt(token[22]);
-				 if(cgpa>=3.8 && term_complete>=158)
-				 {
-					 result_status="Excellent";
-				 }
-				 else if(cgpa>=3.65 && cgpa<3.8 && term_complete>=158)
-				 {
-					 result_status="VeryGood";
-				 }
-				 else if(cgpa>=3.5 && cgpa<3.65 && term_complete>=158)
-				 {
-					 result_status="Good";
-				 }
-				 else if(cgpa>=3 && cgpa<=3.5 && term_complete>=158)
-				 {
-					 result_status="Moderate";
-				 }
-				 else if(cgpa>=3.5 && term_complete<158)
-				 {
-					 result_status="Moderate";
-				 }
-				 else if(cgpa<3 && term_complete>=158)
-				 {
-					 result_status="Poor";
-				 }
-				 else if(cgpa<3.5 && term_complete<158)
-				 {
-					 result_status="VeryPoor";
-				 }
-				 else
-				 {
-					 result_status="Moderate";
-				 }
+			{
+//				 double cgpa=Double.parseDouble(token[19]);
+//				 int term_complete=Integer.parseInt(token[22]);
+//				 if(cgpa>=3.8 && term_complete>=158)
+//				 {
+//					 result_status="Excellent";
+//				 }
+//				 else if(cgpa>=3.65 && cgpa<3.8 && term_complete>=158)
+//				 {
+//					 result_status="VeryGood";
+//				 }
+//				 else if(cgpa>=3.5 && cgpa<3.65 && term_complete>=158)
+//				 {
+//					 result_status="Good";
+//				 }
+//				 else if(cgpa>=3 && cgpa<=3.5 && term_complete>=158)
+//				 {
+//					 result_status="Moderate";
+//				 }
+//				 else if(cgpa>=3.5 && term_complete<158)
+//				 {
+//					 result_status="Moderate";
+//				 }
+//				 else if(cgpa<3 && term_complete>=158)
+//				 {
+//					 result_status="Poor";
+//				 }
+//				 else if(cgpa<3.5 && term_complete<158)
+//				 {
+//					 result_status="VeryPoor";
+//				 }
+//				 else
+//				 {
+//					 result_status="Moderate";
+//				 }
 			 
-			  fileWriter.append(token[0]+","+token[5]+","+token[19]+","+token[22]+","+result_status+"\n");	
+			  fileWriter.append(token[0]+","+token[5]+","+token[19]+","+token[22]+"\n");	
 			  prev_serial=serial;
 			 }
 			 }

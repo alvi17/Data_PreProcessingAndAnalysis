@@ -56,7 +56,6 @@ public class PreprocessAttendance {
 					fileReader =new BufferedReader(new FileReader(fileName1));
 					line=fileReader.readLine();
 					///String[] party=line.split(",");
-					
 				}
 				
 				while((line=fileReader.readLine())!=null){
