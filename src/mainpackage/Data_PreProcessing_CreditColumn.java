@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Data_PreProcessing_CreditColumn {
 	
-	String fileName="processed_sheet5.csv";
+	String fileName="processed_sheet2.csv";
 	FileWriter fileWriter = null;
 	
 	public Data_PreProcessing_CreditColumn()
@@ -36,7 +36,7 @@ public class Data_PreProcessing_CreditColumn {
 			
 		String line = "";
 		fileReader = new BufferedReader(new FileReader(fileName));
-		fileWriter = new FileWriter("processed_sheet5_withCredit.csv");
+		fileWriter = new FileWriter("processed_sheet2_withCredit.csv");
 		String s=fileReader.readLine();
 		String[] parts=s.split(",");
 		fileWriter.append("SERIAL,DEPARTMENTID,HALLSTATUS,Gender,STARTINGACADEMICYEAR2,ADMISSIONDATE,ADMISSIONDATE,LETTERGRADE,CLASSATTENDENCEMARKS,CLASSTESTMARKS,PARTAMARKS,PARTBMARKS,TOTALNUMBER,LEVELNAME,TERMNAME,GPA,CGPA,TERMCOUNT,CRHREARNED,TOTCRHRCOMPLETED,COURSECREDIT");
@@ -117,7 +117,6 @@ public class Data_PreProcessing_CreditColumn {
 					 //	System.out.println(",1.5,");
 				 }
 				 
-				 
 				 if(totalNumber<=75)
 				 {
 					 double percent1=totalNumber*100/75;
@@ -160,63 +159,63 @@ public class Data_PreProcessing_CreditColumn {
 				 
 				 if(totalNumber<=200)
 				 {
-					 if((p1>=80 && grades.equals("A+")) || (p1<80 && p1>=75 && grades.equals("A"))||(p1<75 && p1>=70 && grades.equals("A-")) 
-							 ||(p1<70 && p1>=65 && grades.equals("B+"))||(p1<65 && p1>=60 && grades.equals("B")) || (p1<60 && p1>=55 && grades.equals("B-"))||(p1<55 && p1>=50 && grades.equals("C+"))
-							 ||(p1<50 && p1>=45 && grades.equals("C")) ||(p1<45 && p1>=40 && grades.equals("D")))
+					 if((p1>=79 && grades.equals("A+")) || (p1<=79.5 && p1>=74 && grades.equals("A"))||(p1<=74.5 && p1>=69 && grades.equals("A-")) 
+							 ||(p1<=69.5 && p1>=64 && grades.equals("B+"))||(p1<=64.5 && p1>=59 && grades.equals("B")) || (p1<=59.5 && p1>=54 && grades.equals("B-"))||(p1<=54.5 && p1>=49 && grades.equals("C+"))
+							 ||(p1<=49.5 && p1>=44 && grades.equals("C")) ||(p1<=44.5 && p1>=39 && grades.equals("D")))
 					 {
 						 credit = 2;
 					 }
 					 
-					 if((p2>=65 && grades.equals("B+")) || (p2<65 && p2>=60 && grades.equals("B")) || (p2<60 && p2>=55 && grades.equals("B-"))
-							 ||(p2<55 && p2>=50 && grades.equals("C+")) || (p2<50 && p2>=45 && grades.equals("C")) || (p2<45 && p2>=40 && grades.equals("D")))
+					 if((p2>=64 && grades.equals("B+")) || (p2<=64.5 && p2>=59 && grades.equals("B")) || (p2<=59.5 && p2>=54 && grades.equals("B-"))
+							 ||(p2<=54.5 && p2>=49 && grades.equals("C+")) || (p2<=49.5 && p2>=44 && grades.equals("C")) || (p2<=44.5 && p2>=39 && grades.equals("D")))
 					 {
 						 credit=3;
 					 }
 					 
-					 if((p3<=50 && p3>=45 && grades.equals("C")) || (p3<=45 && p3>=40 && grades.equals("D")))
+					 if((p3<=49.5 && p3>=44 && grades.equals("C")) || (p3<=44.5 && p3>=39 && grades.equals("D")))
 					 {
 						 credit=4;
 					 }
-					 if(p3<40 && grades.equals("F"))
+					 if(p3<39 && grades.equals("F"))
 					 {
 						 credit=4;
 					 }
-					 if(p2<40 && grades.equals("F"))
+					 if(p2<39 && grades.equals("F"))
 					 {
 						 credit=3;
 					 }
-					 if(p1<40 && grades.equals("F"))
+					 if(p1<39 && grades.equals("F"))
 					 {
 						 credit=2;
 					 }
 					 
 					 System.out.println(courseName+","+"Percent :"+percent+","+credit+",");
 				 }
-				 else if(totalNumber<=300 && totalNumber>200)
+				 else if(totalNumber<300 && totalNumber>200)
 				 {
 					 //check for 3 credit
-					 if((p2>=80 && grades.equals("A+")) || (p2<80 && p2>=75 && grades.equals("A"))
-							 ||(p2<75 && p2>=70 && grades.equals("A-")) 
-							 ||(p2<70 && p1>=65 && grades.equals("B+"))){
+					 if((p2>=79 && grades.equals("A+")) || (p2<=79.5 && p2>=74 && grades.equals("A"))
+							 ||(p2<=74.5 && p2>=69 && grades.equals("A-")) 
+							 ||(p2<=69.5 && p1>=64 && grades.equals("B+"))){
 						 credit = 3;
 					 }
 					 //check for 4 credit
-					 if((p3<75 && p3>=70 && grades.equals("A-"))||(p3<70 && p3>=65 && grades.equals("B+"))||(p3<65 && p3>=60 && grades.equals("B"))
-							 ||(p3<60 && p3>=55 && grades.equals("B-"))||(p3<55 && p3>=50 && grades.equals("C+")))
+					 if((p3<=74.5 && p3>=69 && grades.equals("A-"))||(p3<=69.5 && p3>=64 && grades.equals("B+"))||(p3<=64.5 && p3>=59 && grades.equals("B"))
+							 ||(p3<=59.5 && p3>=54 && grades.equals("B-"))||(p3<=54.5 && p3>=49 && grades.equals("C+")))
 					 {
 						 credit = 4;
 					 }
 					 System.out.println(courseName+","+"Percent :"+percent+","+credit+",");
 				 }
 				 
-				 else if(totalNumber>300)
+				 else if(totalNumber>=300)
 				 {
 					 //check for 3 credit
 					 
 					// if((p3>=80 && grades.equals("A+"))||(p3<80 && p3>=75 && grades.equals("A")))
 				//	 {
 						 credit = 4;
-					 //}
+					//}
 					 System.out.println(courseName+","+"Percent :"+percent+","+credit+",");
 					 //check for 4 credit
 				 }

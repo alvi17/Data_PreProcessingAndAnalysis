@@ -26,8 +26,11 @@ public class MainClass {
 //		Data_PreProcessing_CreditColumn dp=new Data_PreProcessing_CreditColumn();
 //		dp.create_Credit_Csv();
 
-		Calulate_Info_Cgpa c=new Calulate_Info_Cgpa();
-		c.calculate();
+//		Calulate_Info_Cgpa c=new Calulate_Info_Cgpa();
+//		c.calculate();
+		
+		Calculate_CgpaForSheets cg=new Calculate_CgpaForSheets();
+		cg.create_training_Csv();
 		
 	}
 
