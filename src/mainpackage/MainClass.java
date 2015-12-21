@@ -29,8 +29,19 @@ public class MainClass {
 //		Calulate_Info_Cgpa c=new Calulate_Info_Cgpa();
 //		c.calculate();
 		
-		Calculate_CgpaForSheets cg=new Calculate_CgpaForSheets();
-		cg.create_training_Csv();
+//		Calculate_CgpaForSheets cg=new Calculate_CgpaForSheets();
+//		cg.create_training_Csv();
+		
+		
+		FindInfoGain fg=new FindInfoGain();
+		fg.updateClassLabels();
+	
+		System.out.println("InfoD: "+fg.getInfoD());
+		System.out.println("InfoD: "+fg.calculateInfoD());
+		System.out.println("InfoDGender: "+fg.calculateInfoMale_Female());
+		fg.getArrtibute();
+		System.out.println("InfoDCredit: "+fg.getSelectedAttribute());
+		
 		
 	}
 

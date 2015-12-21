@@ -249,4 +249,5 @@ public class Data_PreProcessing_CreditColumn {
 		}
 		System.out.println("Total Sessional Course :"+sessionalCourse +"Total theory course: "+num +" Total course: "+serial_num +" Sum: "+(sessionalCourse+num+non_credit));
 	}
+
 }
