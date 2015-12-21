@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Data_PreProcessing_CreditColumn {
 	
-	String fileName="processed_sheet2.csv";
+	String fileName="processed_sheet5.csv";
 	FileWriter fileWriter = null;
 	
 	public Data_PreProcessing_CreditColumn()
@@ -36,7 +36,7 @@ public class Data_PreProcessing_CreditColumn {
 			
 		String line = "";
 		fileReader = new BufferedReader(new FileReader(fileName));
-		fileWriter = new FileWriter("processed_sheet2_withCredit.csv");
+		fileWriter = new FileWriter("processed_sheet5_withCredit.csv");
 		String s=fileReader.readLine();
 		String[] parts=s.split(",");
 		fileWriter.append("SERIAL,DEPARTMENTID,HALLSTATUS,Gender,STARTINGACADEMICYEAR2,ADMISSIONDATE,ADMISSIONDATE,LETTERGRADE,CLASSATTENDENCEMARKS,CLASSTESTMARKS,PARTAMARKS,PARTBMARKS,TOTALNUMBER,LEVELNAME,TERMNAME,GPA,CGPA,TERMCOUNT,CRHREARNED,TOTCRHRCOMPLETED,COURSECREDIT");
@@ -86,7 +86,7 @@ public class Data_PreProcessing_CreditColumn {
 					 courseName=token[i];
 					 if(courseName.length()>0)
 					 {
-					 sessional=Integer.parseInt(courseName.substring(courseName.length()-1))%2;
+						 sessional=Integer.parseInt(courseName.substring(courseName.length()-1))%2;
 					 }
 				 }				  		
 			 }

@@ -4,14 +4,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class ID3Algorithm {
-	String fileName="training_data_for_male_female_cgpa.csv";
-	
+	String fileName="training_data_for_male_female_cgpa.csv";	
 	String male_female;
 	double cgpa;
 	int cr_completed;
 	String result;
 	int split_attribute;
 	double gain_male_female,gain_credit_completed,gain_cgpa;
+	
 	public ID3Algorithm(String male_female,double cgpa,int creditcompelted,String result)
 	{
 		this.male_female=male_female;

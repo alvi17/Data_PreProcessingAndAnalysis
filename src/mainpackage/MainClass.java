@@ -23,8 +23,8 @@ public class MainClass {
 //		info.updateClassLabels();
 //		System.out.println("InfoD = : "+info.calculateInfoD()+" InfomaleFemale : "+info.calculateInfoMale_Female()+" InfoCreditCompleted: "+info.calculateCreditCompleteInfo());
 
-//		Data_PreProcessing_CreditColumn dp=new Data_PreProcessing_CreditColumn();
-//		dp.create_Credit_Csv();
+		Data_PreProcessing_CreditColumn dp=new Data_PreProcessing_CreditColumn();
+		dp.create_Credit_Csv();
 
 //		Calulate_Info_Cgpa c=new Calulate_Info_Cgpa();
 //		c.calculate();
@@ -33,14 +33,14 @@ public class MainClass {
 //		cg.create_training_Csv();
 		
 		
-		FindInfoGain fg=new FindInfoGain();
-		fg.updateClassLabels();
-	
-		System.out.println("InfoD: "+fg.getInfoD());
-		System.out.println("InfoD: "+fg.calculateInfoD());
-		System.out.println("InfoDGender: "+fg.calculateInfoMale_Female());
-		fg.getArrtibute();
-		System.out.println("InfoDCredit: "+fg.getSelectedAttribute());
+//		FindInfoGain fg=new FindInfoGain();
+//		fg.updateClassLabels();
+//	
+//		System.out.println("InfoD: "+fg.getInfoD());
+//		System.out.println("InfoD: "+fg.calculateInfoD());
+//		System.out.println("InfoDGender: "+fg.calculateInfoMale_Female());
+//		fg.getArrtibute();
+//		System.out.println("InfoDCredit: "+fg.getSelectedAttribute());
 		
 		
 	}
