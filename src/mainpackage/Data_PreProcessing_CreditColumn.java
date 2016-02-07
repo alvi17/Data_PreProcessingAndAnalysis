@@ -98,8 +98,7 @@ public class Data_PreProcessing_CreditColumn {
 				 non_credit++;
 				 if(grades.equals("S") || grades.equals("U") || grades.equals("X")||grades.equals("NR"))
 				 {
-					 credit=0;
-					
+					 credit=0;					
 					 x=1;
 				 }
 				 fileWriter.append(","+credit);

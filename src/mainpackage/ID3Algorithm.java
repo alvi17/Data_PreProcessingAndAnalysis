@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class ID3Algorithm {
+	
 	String fileName="training_data_for_male_female_cgpa.csv";	
 	String male_female;
 	double cgpa;
