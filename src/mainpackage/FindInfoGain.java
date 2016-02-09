@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+
+import java.util.Arrays;
+
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -28,8 +32,12 @@ public class FindInfoGain {
 	int excellent_tnc,very_good_tnc,good_tnc,moderate_tnc,poor_tnc,very_poor_tnc;
 	int term_complete,term_not_complete;
 	
-	
-	
+
+	int hall_resident_ex=0;
+	int hall_resident_vg=0,hall_resident_g=0,hall_resident_m=0,hall_resident_p=0,hall_resident_vp=0;
+	int hall_attahed_ex=0,hall_attahed_g=0,hall_attahed_vg=0,hall_attahed_m=0,hall_attahed_p=0,hall_attahed_vp=0;
+		
+
 	int cgpa_80=0,cgpa_30=0,cgpa_50=0,cgpa_60=0,cgpa_70=0,cgpa_20=0,cgpa_00=0,cgpa_10=0;
 	int cgpa_30_excellent=0,cgpa_80_excellen=0,cgpa_50_excellent=0,
 			cgpa_60_excellent=0,cgpa_70_excellent=0,cgpa_10_excellent=0,
@@ -56,7 +64,12 @@ public class FindInfoGain {
  	
 	int dept_eee=0,dept_cse=0,dept_ipe=0,dept_me=0,dept_mme=0,dept_wre=0,dept_ce=0,
 			dept_urp=0,dept_arch=0,dept_che=0,dept_name=0;
+		
 	
+	int hall_res=0;
+	int hall_attached=0;
+	
+
 	ArrayList<Integer> att_list=new ArrayList<Integer>();
 	
 	public FindInfoGain()
@@ -96,7 +109,7 @@ public class FindInfoGain {
 		moderate_tnc=0;
 		poor_tnc=0;
 		very_poor_tnc=0;
-		
+	
 		eee=new int[6];
 		cse=new int[6];
 		ipe=new int[6];
@@ -199,6 +212,19 @@ public class FindInfoGain {
 				int dept=Integer.parseInt(tokens[1]);
 				double cgpa=Double.parseDouble(tokens[6]);
 				
+
+				int hall=Integer.parseInt(tokens[2]);
+				
+				if(hall==0)
+				{
+					hall_attached++;
+				}
+				else
+				{
+					hall_res++;
+				}
+				
+				
 				if(dept==1)
 				{
 					dept_eee++;
@@ -274,6 +300,17 @@ public class FindInfoGain {
 				
 				if(result_status.equals("Excellent"))
 				{
+
+					if(hall==1)
+					{
+						hall_resident_ex++;
+					}
+					else
+					{
+						hall_attahed_ex++;
+					}
+					
+					
 					if(male_female==1)
 					{
 						excellent_male++;
@@ -346,6 +383,16 @@ public class FindInfoGain {
 				}
 				else if(result_status.equals("Very Good"))
 				{
+
+					if(hall==1)
+					{
+						hall_resident_vg++;
+					}
+					else
+					{
+						hall_attahed_vg++;
+					}
+					
 					if(male_female==1)
 					{
 						very_good_male++;
@@ -417,6 +464,16 @@ public class FindInfoGain {
 				}
 				else if(result_status.equals("Good"))
 				{
+
+					if(hall==1)
+					{
+						hall_resident_g++;
+					}
+					else
+					{
+						hall_attahed_g++;
+					}
+				
 					if(male_female==1)
 					{
 						good_male++;
@@ -492,6 +549,16 @@ public class FindInfoGain {
 				}
 				else if(result_status.equals("Moderate"))
 				{
+
+					if(hall==1)
+					{
+						hall_resident_m++;
+					}
+					else
+					{
+						hall_attahed_m++;
+					}
+
 					if(male_female==1)
 					{
 						moderate_male++;
@@ -565,6 +632,17 @@ public class FindInfoGain {
 				}
 				else if(result_status.equals("Poor"))
 				{
+
+					if(hall==1)
+					{
+						hall_resident_p++;
+					}
+					else
+					{
+						hall_attahed_p++;
+					}
+
+
 					if(male_female==1)
 					{
 						poor_male++;
@@ -639,6 +717,17 @@ public class FindInfoGain {
 				}
 				else if(result_status.equals("Very Poor"))
 				{
+
+					if(hall==1)
+					{
+						hall_resident_vp++;
+					}
+					else
+					{
+						hall_attahed_vp++;
+					}
+
+
 					if(male_female==1)
 					{
 						very_poor_male++;
@@ -731,28 +820,30 @@ public class FindInfoGain {
 		
 		for(int i=0;i<eee.length;i++)
 		{
-			eeeinfo+=( (double)(-eee[i]/dept_eee)*(Math.log((double)(eee[i]/dept_eee))/Math.log(2)));
-			cseinfo+=((double)(-cse[i]/dept_cse)*Math.log((double)(cse[i]/dept_cse))/Math.log(2));
-			ipeinfo+=((double)(-ipe[i]/dept_ipe)*Math.log((double)(ipe[i]/dept_ipe))/Math.log(2));
-			nameinfo+=((double)(-name[i]/dept_name)*Math.log((double)(name[i]/dept_name))/Math.log(2));
-			meinfo+=((double)(-me[i]/dept_me)*Math.log((double)(me[i]/dept_me))/Math.log(2));
-			ceinfo+=((double)(-ce[i]/dept_ce)*Math.log((double)(ce[i]/dept_ce))/Math.log(2));
-			wreinfo+=((double)(-wre[i]/dept_wre)*Math.log((double)(wre[i]/dept_wre))/Math.log(2));
-			cheinfo+=((double)(-che[i]/dept_che)*Math.log((double)(che[i]/dept_che))/Math.log(2));
-			urpinfo+=((double)(-urp[i]/dept_urp)*Math.log((double)(urp[i]/dept_urp))/Math.log(2));
-			archinfo+=((double)(-arch[i]/dept_arch)*Math.log((double)(arch[i]/dept_arch))/Math.log(2));
-			mmeinfo+=((double)(-mme[i]/dept_mme)*Math.log((double)(mme[i]/dept_mme))/Math.log(2));
+
+			eeeinfo+=( (double)(-(double)eee[i]/(double)dept_eee)*(Math.log((double)((double)eee[i]/(double)dept_eee))/Math.log(2)));
+			cseinfo+=((double)(-(double)cse[i]/(double)dept_cse)*Math.log((double)((double)cse[i]/(double)dept_cse))/Math.log(2));
+			ipeinfo+=((double)(-(double)ipe[i]/(double)dept_ipe)*Math.log((double)((double)ipe[i]/(double)dept_ipe))/Math.log(2));
+			nameinfo+=((double)(-(double)name[i]/(double)dept_name)*Math.log((double)((double)name[i]/(double)dept_name))/Math.log(2));
+			meinfo+=((double)(-(double)me[i]/(double)dept_me)*Math.log((double)((double)me[i]/(double)dept_me))/Math.log(2));
+			ceinfo+=((double)(-(double)ce[i]/(double)dept_ce)*Math.log((double)((double)ce[i]/(double)dept_ce))/Math.log(2));
+			wreinfo+=((double)(-(double)wre[i]/(double)dept_wre)*Math.log((double)((double)wre[i]/(double)dept_wre))/Math.log(2));
+			cheinfo+=((double)(-(double)che[i]/(double)dept_che)*Math.log((double)((double)che[i]/(double)dept_che))/Math.log(2));
+			urpinfo+=((double)(-(double)urp[i]/(double)dept_urp)*Math.log((double)((double)urp[i]/(double)dept_urp))/Math.log(2));
+			archinfo+=((double)(-(double)arch[i]/(double)dept_arch)*Math.log((double)((double)arch[i]/(double)dept_arch))/Math.log(2));
+			mmeinfo+=((double)(-(double)mme[i]/(double)dept_mme)*Math.log((double)((double)mme[i]/(double)dept_mme))/Math.log(2));
 			
 		}
-		System.out.println("EEE info"+eeeinfo+ " "+dept_cse+" "+cse[0]+cse[1]+cse[2]+cse[3]+cse[4]+cse[5]);
-		double infoDept=(double)(dept_eee/count)*eeeinfo+
-				(double)(dept_cse/count)*cseinfo+
-				(double)(dept_ipe/count)*ipeinfo+(double)(dept_name/count)*nameinfo+
-				(double)(dept_me/count)*meinfo+(double)(dept_ce/count)*ceinfo+
-				(double)(dept_wre/count)*wreinfo+(double)(dept_che/count)*cheinfo+
-				(double)(dept_urp/count)*urpinfo+(double)(dept_arch/count)*archinfo+
-				(double)(dept_mme/count)*mmeinfo;
-		
+	//	System.out.println("EEE info"+eeeinfo+ " "+dept_cse+" "+cse[0]+cse[1]+cse[2]+cse[3]+cse[4]+cse[5]);
+		double infoDept=(double)((double)dept_eee/(double)count)*eeeinfo+
+				(double)((double)dept_cse/(double)count)*cseinfo+
+				(double)((double)dept_ipe/(double)count)*ipeinfo+(double)((double)dept_name/(double)count)*nameinfo+
+				(double)((double)dept_me/(double)count)*meinfo+(double)((double)dept_ce/(double)count)*ceinfo+
+				(double)((double)dept_wre/(double)count)*wreinfo+(double)((double)dept_che/(double)count)*cheinfo+
+				(double)((double)dept_urp/(double)count)*urpinfo+(double)((double)dept_arch/(double)count)*archinfo+
+				(double)((double)dept_mme/(double)count)*mmeinfo;
+
+			
 		
 		return infoDept;
 	}
@@ -762,6 +853,9 @@ public class FindInfoGain {
 	{
 		double cg50=(double)cgpa_50/(double)count;
 		double cg00=(double)cgpa_00/(double)count;
+
+		//System.out.println("Cg50"+cg50+" Cg00 "+cg00);
+
 		System.out.println("Cg50"+cg50+" Cg00 "+cg00);
 		double cg50_excellent=(double)cgpa_50_excellent/cgpa_50;
 		double cg50_verygood=(double)cgpa_50_verygood/cgpa_50;
@@ -808,9 +902,11 @@ public class FindInfoGain {
 		double p=(double)poor/(double)count;
 		
 		
-		System.out.println("excellent = : "+excellent+"Very_good:"+very_good
-			+"Good: "+good+" Moderate : "+moderate+" Very_poor: "+very_poor+" Poor: "+poor+" Count : "+count);
-		
+
+//		System.out.println("excellent = : "+excellent+"Very_good:"+very_good
+//			+"Good: "+good+" Moderate : "+moderate+" Very_poor: "+very_poor+" Poor: "+poor+" Count : "+count);
+//			
+
 		infoD=(-e)* Math.log(e)/Math.log(2)+ (-vg)*Math.log(vg)/Math.log(2) 
 				+ (-g)*Math.log(g)/Math.log(2)+
 				(-m)*Math.log(m)/Math.log(2)+(-vp)*Math.log(vp)/Math.log(2)
@@ -848,6 +944,48 @@ public class FindInfoGain {
 		return infoMaleFemale;
 	}
 	
+
+
+	public double calculateHallInfo()
+	{
+		double x=(double)hall_res/(double)count;
+		double hall_res_excellent= (double)hall_resident_ex/(double)hall_res;
+		double hall_res_verygood= (double)hall_resident_vg/(double)hall_res;
+		double hall_res_good= (double)hall_resident_g/(double)hall_res;
+		double hall_res_moderate= (double)hall_resident_m/(double)hall_res;
+		double hall_res_poor= (double)hall_resident_p/(double)hall_res;
+		double hall_res_verypoor= (double)hall_resident_vp/(double)hall_res;
+						
+		
+		double hall_res_info=x*((-hall_res_excellent)*Math.log(hall_res_excellent)/Math.log(2)+
+				(-hall_res_verygood)*Math.log(hall_res_verygood)/Math.log(2)+
+				(-hall_res_good)*Math.log(hall_res_good)/Math.log(2)
+				+(-hall_res_moderate)*Math.log(hall_res_moderate)/Math.log(2)+
+				(-hall_res_poor)*Math.log(hall_res_poor)/Math.log(2)+
+				(-hall_res_verypoor)*Math.log(hall_res_verypoor)/Math.log(2));
+		
+		double y=(double)hall_attached/(double)count;
+		double hall_attache_excellent=(double)hall_attahed_ex/(double)hall_attached;
+		double hall_attache_verygood=(double)hall_attahed_vg/(double)hall_attached;
+		double hall_attache_good=(double)hall_attahed_g/(double)hall_attached;
+		double hall_attache_moderate=(double)hall_attahed_m/(double)hall_attached;
+		double hall_attache_poor=(double)hall_attahed_p/(double)hall_attached;
+		double hall_attache_verypoor=(double)hall_attahed_vp/(double)hall_attached;
+		
+		double hall_ath_info=y*((-hall_attache_excellent)*Math.log(hall_attache_excellent)/Math.log(2)+
+				(-hall_attache_verygood)*Math.log(hall_attache_verygood)/Math.log(2)+
+				(-hall_attache_good)*Math.log(hall_attache_good)/Math.log(2)
+				+(-hall_attache_moderate)*Math.log(hall_attache_moderate)/Math.log(2)+
+				(-hall_attache_poor)*Math.log(hall_attache_poor)/Math.log(2)+
+				(-hall_attache_verypoor)*Math.log(hall_attache_verypoor)/Math.log(2));
+		
+		
+		double residentInfo=hall_res_info+hall_ath_info;
+		
+		return residentInfo;
+	}
+
+
 	
 
 	
@@ -907,59 +1045,71 @@ public class FindInfoGain {
 	}	
 	ArrayList<Double> sortedList=new ArrayList<Double>();
 	public void getArrtibute()
-	{
-		
-		double gainCgpa=getInfoD()-1.86;
+
+	{		
+		double gainCgpa=Math.abs(getInfoD()-calculateCgpaInfo());
+		System.out.println(gainCgpa);
 		sortedList.add(gainCgpa);
-		double gainMaleFemale=getInfoD()-calculateInfoMale_Female();
+		double gainMaleFemale=Math.abs(getInfoD()-calculateInfoMale_Female());
+		System.out.println(gainMaleFemale);
 		sortedList.add(gainMaleFemale);
-		double gainDept=getInfoD()-calculateDeptInfo();
+		double gainDept=Math.abs(getInfoD()-calculateDeptInfo());
+		System.out.println(gainDept);
 		sortedList.add(gainDept);
-		double gainComplete=getInfoD()-calculateCreditCompleteInfo();
+		double gainComplete=Math.abs(getInfoD()-calculateCreditCompleteInfo());
+		System.out.println(gainComplete);
 		sortedList.add(gainComplete);	
+		double gainHall=Math.abs(getInfoD()-calculateHallInfo());
+		System.out.println(gainHall);
+		sortedList.add(gainHall);
 		
+		Collections.sort(sortedList);
+		
+		//Arrays.sort(sortedList);
 	}
 
+	
+	double max=-999999;
+	int selected_id=-1;
 	public int getSelectedAttribute()
 	{
-		double max=-999999;
-		int selected_id=-1;
-		double gain_cgpa=calculateInfoD()-calculateCgpaInfo();
+		double gain_cgpa=Math.abs(getInfoD()-calculateCgpaInfo());
 		if(gain_cgpa>max && sortedList.contains(gain_cgpa))
 		{
 			max=gain_cgpa;
 			selected_id=1;
 			sortedList.remove(gain_cgpa);
+			System.out.println(gain_cgpa);
 		}
 		
-		double gain_malefemale=calculateInfoD()-calculateInfoMale_Female();
+		double gain_malefemale=Math.abs(getInfoD()-calculateInfoMale_Female());
 		if(max<gain_malefemale && sortedList.contains(gain_malefemale))
 		{
 			max=gain_malefemale;
 			selected_id=2;
+			System.out.println(gain_malefemale);
 			sortedList.remove(gain_malefemale);
 		}
-		double gainDept=getInfoD()-calculateDeptInfo();
+		double gainDept=Math.abs(getInfoD()-calculateDeptInfo());
 		
 		if(gainDept>max && sortedList.contains(gainDept))
 		{
 			max=gainDept;
 			selected_id=3;
+			System.out.println(gainDept);
 			sortedList.remove(gainDept);
 		}
 		
-		double gainComplete=getInfoD()-calculateCreditCompleteInfo();
-		
+		double gainComplete=Math.abs(getInfoD()-calculateCreditCompleteInfo());
 		if(gainComplete>max && sortedList.contains(gainComplete))
 		{
 			max=gainComplete;
 			selected_id=4;
 			sortedList.remove(gainComplete);
 		}
-		
+	
 		return selected_id;
 	}
-	
 	
 	 public double logOfBase(int base, double num) {
 		    return Math.log(num) / Math.log(base);

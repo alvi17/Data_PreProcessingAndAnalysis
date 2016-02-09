@@ -2,6 +2,7 @@ package mainpackage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 
 public class ID3Algorithm {
 	
@@ -12,7 +13,9 @@ public class ID3Algorithm {
 	String result;
 	int split_attribute;
 	double gain_male_female,gain_credit_completed,gain_cgpa;
-	
+
+	ArrayList<ArrayList<Double>> trainingList;
+
 	public ID3Algorithm(String male_female,double cgpa,int creditcompelted,String result)
 	{
 		this.male_female=male_female;

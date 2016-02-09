@@ -34,18 +34,15 @@ public class MainClass {
 				
 		FindInfoGain fg=new FindInfoGain();
 		fg.updateClassLabels();
-		
-		System.out.println("InfoD: "+fg.getInfoD());
+
+	
+		//System.out.println("InfoD: "+fg.getInfoD());
 		System.out.println("InfoD: "+fg.calculateInfoD());
-		System.out.println("InfoDGender: "+fg.calculateInfoMale_Female());
+		//System.out.println("InfoDGender: "+fg.calculateCgpaInfo());
 		fg.getArrtibute();
-		System.out.println("InfoDCredit: "+fg.getSelectedAttribute());
-		
-//		PrepateDataForFinalGraph pg=new PrepateDataForFinalGraph();
-//		pg.processData();
 //		
+		
 		
 	
 	}
-
 }
