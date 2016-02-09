@@ -37,9 +37,10 @@ public class MainClass {
 
 	
 		//System.out.println("InfoD: "+fg.getInfoD());
-		System.out.println("InfoD: "+fg.calculateInfoD());
+		
 		//System.out.println("InfoDGender: "+fg.calculateCgpaInfo());
 		fg.getArrtibute();
+		System.out.println("InfoD: "+fg.calculateClasstestInfo());
 //		
 		
 		

@@ -56,6 +56,16 @@ public class FindInfoGain {
 			cgpa_10_poor=0,cgpa_00_poor=0,cgpa20_poor=0;
 	
 	
+	int classtest80=0,classtest65=0,classtest50=0;
+	int classtest80_ex=1,classtest80_vg=1,classtest80_g=1,classtest80_m=1,classtest80_p=1,classtest80_vp=1;
+	int classtest65_ex=1,classtest65_vg=1,classtest65_g=1,classtest65_m=1,classtest65_p=1,classtest65_vp=1;
+	int classtest50_ex=1,classtest50_vg=1,classtest50_g=1,classtest50_m=1,classtest50_p=1,classtest50_vp=1;
+	
+	int classatten80=0,classatten65=0,classatten50=0;
+	int classatten80_ex=1,classatten80_vg=1,classatten80_g=1,classatten80_m=1,classatten80_p=1,classatten80_vp=1;
+	int classatten65_ex=1,classatten65_vg=1,classatten65_g=1,classatten65_m=1,classatten65_p=1,classatten65_vp=1;
+	int classatten50_ex=1,classatten50_vg=1,classatten50_g=1,classatten50_m=1,classatten50_p=1,classatten50_vp=1;
+	
 	
 	int[] eee;
 	int[] cse;
@@ -212,7 +222,22 @@ public class FindInfoGain {
 				int dept=Integer.parseInt(tokens[1]);
 				double cgpa=Double.parseDouble(tokens[6]);
 				
-
+				double classtest=Double.parseDouble(tokens[5]);
+				
+				if(classtest>=.8)
+				{
+					classtest80++;
+				}
+				else if(classtest>=.65 && classtest<=.8)
+				{
+					classtest65++;
+				}
+				else
+				{
+					classtest50++;
+				}
+				
+				
 				int hall=Integer.parseInt(tokens[2]);
 				
 				if(hall==0)
@@ -300,6 +325,18 @@ public class FindInfoGain {
 				
 				if(result_status.equals("Excellent"))
 				{
+					if(classtest>=.8)
+					{
+						classtest80_ex++;
+					}
+					else if(classtest>=.65 && classtest<=.5)
+					{
+						classtest65_ex++;
+					}
+					else
+					{
+						classtest50_ex++;
+					}
 
 					if(hall==1)
 					{
@@ -383,7 +420,18 @@ public class FindInfoGain {
 				}
 				else if(result_status.equals("Very Good"))
 				{
-
+					if(classtest>=.8)
+					{
+						classtest80_vg++;
+					}
+					else if(classtest>=.65 && classtest<=.5)
+					{
+						classtest65_vg++;
+					}
+					else
+					{
+						classtest50_vg++;
+					}
 					if(hall==1)
 					{
 						hall_resident_vg++;
@@ -464,7 +512,18 @@ public class FindInfoGain {
 				}
 				else if(result_status.equals("Good"))
 				{
-
+					if(classtest>=.8)
+					{
+						classtest80_g++;
+					}
+					else if(classtest>=.65 && classtest<=.5)
+					{
+						classtest65_g++;
+					}
+					else
+					{
+						classtest50_g++;
+					}
 					if(hall==1)
 					{
 						hall_resident_g++;
@@ -549,6 +608,18 @@ public class FindInfoGain {
 				}
 				else if(result_status.equals("Moderate"))
 				{
+					if(classtest>=.8)
+					{
+						classtest80_m++;
+					}
+					else if(classtest>=.65 && classtest<=.5)
+					{
+						classtest65_m++;
+					}
+					else
+					{
+						classtest50_m++;
+					}
 
 					if(hall==1)
 					{
@@ -632,7 +703,18 @@ public class FindInfoGain {
 				}
 				else if(result_status.equals("Poor"))
 				{
-
+					if(classtest>=.8)
+					{
+						classtest80_p++;
+					}
+					else if(classtest>=.65 && classtest<=.5)
+					{
+						classtest65_p++;
+					}
+					else
+					{
+						classtest50_p++;
+					}
 					if(hall==1)
 					{
 						hall_resident_p++;
@@ -717,7 +799,18 @@ public class FindInfoGain {
 				}
 				else if(result_status.equals("Very Poor"))
 				{
-
+					if(classtest>=.8)
+					{
+						classtest80_vp++;
+					}
+					else if(classtest>=.65 && classtest<=.5)
+					{
+						classtest65_vp++;
+					}
+					else
+					{
+						classtest50_vp++;
+					}
 					if(hall==1)
 					{
 						hall_resident_vp++;
@@ -800,15 +893,12 @@ public class FindInfoGain {
 					very_poor++;
 				}
 				count++;
-			}
-			
+			}			
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-		}
-			
-		
+		}	
 	}
 	
 	public double calculateDeptInfo()
@@ -816,7 +906,6 @@ public class FindInfoGain {
 		double eeeinfo=0;
 		double cseinfo=0;
 		double ipeinfo=0,nameinfo=0,meinfo=0,ceinfo=0,wreinfo=0,cheinfo=0,mmeinfo=0,archinfo=0,urpinfo=0;
-		
 		
 		for(int i=0;i<eee.length;i++)
 		{
@@ -985,7 +1074,39 @@ public class FindInfoGain {
 		return residentInfo;
 	}
 
-
+	
+	public double calculateClasstestInfo()
+	{
+		
+		double x=(double)classtest80/(double)count;
+		
+		double classtest80_info=x*((-(double)classtest80_ex/(double)classtest80)*Math.log((double)classtest80_ex/(double)classtest80)/Math.log(2) +
+				(-(double)classtest80_vg/(double)classtest80)*Math.log((double)classtest80_vg/(double)classtest80)/Math.log(2) +
+				(-(double)classtest80_g/(double)classtest80)*Math.log((double)classtest80_g/(double)classtest80)/Math.log(2)+(
+						-(double)classtest80_m/(double)classtest80)*Math.log((double)classtest80_m/(double)classtest80)/Math.log(2)+(
+				-(double)classtest80_p/(double)classtest80)*Math.log((double)classtest80_p/(double)classtest80)/Math.log(2)+
+				(-(double)classtest80_vp/(double)classtest80)*Math.log((double)classtest80_vp/(double)classtest80)*Math.log(2));
+		
+		double y=(double)classtest65/(double)count;
+		double classtest65_info=y*((-(double)classtest65_ex/(double)classtest65)*Math.log((double)classtest65_ex/(double)classtest65)/Math.log(2) +
+				(-(double)classtest65_vg/(double)classtest65)*Math.log((double)classtest65_vg/(double)classtest65)/Math.log(2) +
+				(-(double)classtest65_g/(double)classtest65)*Math.log((double)classtest65_g/(double)classtest65)/Math.log(2)+(
+						-(double)classtest65_m/(double)classtest65)*Math.log((double)classtest65_m/(double)classtest65)/Math.log(2)+(
+				-(double)classtest65_p/(double)classtest65)*Math.log((double)classtest65_p/(double)classtest65)/Math.log(2)+
+				(-(double)classtest65_vp/(double)classtest65)*Math.log((double)classtest65_vp/(double)classtest65)/Math.log(2));
+			
+		double z=(double)classtest50/(double)count;
+		
+		double classtest50_info=z*((-(double)classtest50_ex/(double)classtest50)*Math.log((double)classtest50_ex/(double)classtest65)/Math.log(2) +
+				(-(double)classtest50_vg/(double)classtest50)*Math.log((double)classtest50_vg/(double)classtest65)/Math.log(2)  +
+				(-(double)classtest50_g/(double)classtest50)*Math.log((double)classtest50_g/(double)classtest65)/Math.log(2) +(
+						-(double)classtest50_m/(double)classtest50)*Math.log((double)classtest50_m/(double)classtest65)/Math.log(2) +(
+				-(double)classtest50_p/(double)classtest50)*Math.log((double)classtest50_p/(double)classtest65)/Math.log(2) +
+				(-(double)classtest50_vp/(double)classtest50)*Math.log((double)classtest50_vp/(double)classtest65)/Math.log(2) );
+		
+		double classtest_info=classtest80_info+classtest65_info+classtest50_info;
+		return classtest_info;
+	}
 	
 
 	
