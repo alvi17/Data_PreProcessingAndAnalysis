@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
-
 import java.util.Arrays;
 
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -39,7 +39,7 @@ public class FindInfoGain {
 		
 
 	int cgpa_80=0,cgpa_30=0,cgpa_50=0,cgpa_60=0,cgpa_70=0,cgpa_20=0,cgpa_00=0,cgpa_10=0;
-	int cgpa_30_excellent=0,cgpa_80_excellen=0,cgpa_50_excellent=0,
+	int cgpa_30_excellent=0,cgpa_80_excellent=0,cgpa_50_excellent=1,
 			cgpa_60_excellent=0,cgpa_70_excellent=0,cgpa_10_excellent=0,
 			cgpa_00_excellent=0,cgpa20_excellent=0;
 	int cgpa_30_verygood=0,cgpa_80_verygood=0,cgpa_50_verygood=0,
@@ -223,6 +223,22 @@ public class FindInfoGain {
 				double cgpa=Double.parseDouble(tokens[6]);
 				
 				double classtest=Double.parseDouble(tokens[5]);
+				double classAttendance=Double.parseDouble(tokens[4]);
+				
+
+				if(classAttendance>=.8)
+				{
+					classatten80++;
+				}
+				else if(classAttendance>=.65 && classAttendance<=.8)
+				{
+					classatten65++;
+				}
+				else
+				{
+					classatten50++;
+				}
+				
 				
 				if(classtest>=.8)
 				{
@@ -296,7 +312,11 @@ public class FindInfoGain {
 				}
 				
 								
-				if(cgpa>=3.5)
+				if(cgpa>=3.8)
+				{
+					cgpa_80++;
+				}
+				else if(cgpa>=3.5 && cgpa<3.8)
 				{
 					cgpa_50++;
 				}
@@ -325,6 +345,19 @@ public class FindInfoGain {
 				
 				if(result_status.equals("Excellent"))
 				{
+					if(classAttendance>=.8)
+					{
+						classatten80_ex++;
+					}
+					else if(classAttendance>=.65 && classAttendance<=.5)
+					{
+						classatten65_ex++;
+					}
+					else
+					{
+						classatten50_ex++;
+					}
+					
 					if(classtest>=.8)
 					{
 						classtest80_ex++;
@@ -366,7 +399,11 @@ public class FindInfoGain {
 						excellent_tnc++;
 					}
 					
-					if(cgpa>=3.5)
+					if(cgpa>=3.8)
+					{
+						cgpa_80_excellent++;
+					}
+					else
 					{
 						cgpa_50_excellent++;
 					}
@@ -420,6 +457,18 @@ public class FindInfoGain {
 				}
 				else if(result_status.equals("Very Good"))
 				{
+					if(classAttendance>=.8)
+					{
+						classatten80_vg++;
+					}
+					else if(classAttendance>=.65 && classAttendance<=.5)
+					{
+						classatten65_vg++;
+					}
+					else
+					{
+						classatten50_vg++;
+					}
 					if(classtest>=.8)
 					{
 						classtest80_vg++;
@@ -458,10 +507,19 @@ public class FindInfoGain {
 					{
 						very_good_tnc++;
 					}
-					if(cgpa>=3.5)
+					if(cgpa>=3.8)
+					{
+						cgpa_80_verygood++;
+					}
+					else if(cgpa>=3.5 && cgpa<3.8)
 					{
 						cgpa_50_verygood++;
 					}
+					else
+					{
+						cgpa_00_verygood++;
+					}
+						
 					
 					if(dept==1)
 					{
@@ -512,6 +570,19 @@ public class FindInfoGain {
 				}
 				else if(result_status.equals("Good"))
 				{
+					if(classAttendance>=.8)
+					{
+						classatten80_g++;
+					}
+					else if(classAttendance>=.65 && classAttendance<=.5)
+					{
+						classatten65_g++;
+					}
+					else
+					{
+						classatten50_g++;
+					}
+					
 					if(classtest>=.8)
 					{
 						classtest80_g++;
@@ -608,6 +679,19 @@ public class FindInfoGain {
 				}
 				else if(result_status.equals("Moderate"))
 				{
+					if(classAttendance>=.8)
+					{
+						classatten80_m++;
+					}
+					else if(classAttendance>=.65 && classAttendance<=.5)
+					{
+						classatten65_m++;
+					}
+					else
+					{
+						classatten50_m++;
+					}
+					
 					if(classtest>=.8)
 					{
 						classtest80_m++;
@@ -703,6 +787,19 @@ public class FindInfoGain {
 				}
 				else if(result_status.equals("Poor"))
 				{
+					if(classAttendance>=.8)
+					{
+						classatten80_p++;
+					}
+					else if(classAttendance>=.65 && classAttendance<=.5)
+					{
+						classatten65_p++;
+					}
+					else
+					{
+						classatten50_p++;
+					}
+					
 					if(classtest>=.8)
 					{
 						classtest80_p++;
@@ -799,6 +896,19 @@ public class FindInfoGain {
 				}
 				else if(result_status.equals("Very Poor"))
 				{
+					if(classAttendance>=.8)
+					{
+						classatten80_vp++;
+					}
+					else if(classAttendance>=.65 && classAttendance<=.5)
+					{
+						classatten65_vp++;
+					}
+					else
+					{
+						classatten50_vp++;
+					}
+					
 					if(classtest>=.8)
 					{
 						classtest80_vp++;
@@ -942,11 +1052,14 @@ public class FindInfoGain {
 	{
 		double cg50=(double)cgpa_50/(double)count;
 		double cg00=(double)cgpa_00/(double)count;
-
+		double cg80=(double)cgpa_80/(double)count;
 		//System.out.println("Cg50"+cg50+" Cg00 "+cg00);
 
-		System.out.println("Cg50"+cg50+" Cg00 "+cg00);
-		double cg50_excellent=(double)cgpa_50_excellent/cgpa_50;
+	//	System.out.println("Cg50"+cg50+" Cg00 "+cg00);
+		double cg80_excellent=(double)cgpa_80_excellent/cgpa_80;
+		
+		
+	
 		double cg50_verygood=(double)cgpa_50_verygood/cgpa_50;
 		double cg50_good=(double)cgpa_50_good/cgpa_50;
 		double cg50_moderate=(double)cgpa_50_moderate/cgpa_50;
@@ -969,7 +1082,7 @@ public class FindInfoGain {
 		}
 		
 		
-		double infoCgpa= cg50*((-cg50_excellent)*Math.log(cg50_excellent)/Math.log(2)+
+		double infoCgpa=cg80*((-cg80_excellent)*Math.log(cg80_excellent)/Math.log(2))+ cg50*(
 				(-cg50_verygood)*Math.log(cg50_verygood)/Math.log(2)+
 				(-cg50_good)*Math.log(cg50_good)/Math.log(2)+
 				(-cg50_moderate)*Math.log(cg50_moderate)/Math.log(2)+
@@ -1108,7 +1221,38 @@ public class FindInfoGain {
 		return classtest_info;
 	}
 	
-
+	public double calculateClassAttendInfo()
+	{
+		
+		double x=(double)classatten80/(double)count;
+		
+		double classatten80_info=x*((-(double)classatten80_ex/(double)classatten80)*Math.log((double)classatten80_ex/(double)classatten80)/Math.log(2) +
+				(-(double)classatten80_vg/(double)classatten80)*Math.log((double)classatten80_vg/(double)classatten80)/Math.log(2) +
+				(-(double)classatten80_g/(double)classatten80)*Math.log((double)classatten80_g/(double)classatten80)/Math.log(2)+(
+						-(double)classatten80_m/(double)classatten80)*Math.log((double)classatten80_m/(double)classatten80)/Math.log(2)+(
+				-(double)classatten80_p/(double)classatten80)*Math.log((double)classatten80_p/(double)classatten80)/Math.log(2)+
+				(-(double)classatten80_vp/(double)classatten80)*Math.log((double)classatten80_vp/(double)classatten80)*Math.log(2));
+		
+		double y=(double)classatten65/(double)count;
+		double classatten65_info=y*((-(double)classatten65_ex/(double)classatten65)*Math.log((double)classatten65_ex/(double)classatten65)/Math.log(2) +
+				(-(double)classatten65_vg/(double)classatten65)*Math.log((double)classatten65_vg/(double)classatten65)/Math.log(2) +
+				(-(double)classatten65_g/(double)classatten65)*Math.log((double)classatten65_g/(double)classatten65)/Math.log(2)+(
+						-(double)classatten65_m/(double)classatten65)*Math.log((double)classatten65_m/(double)classatten65)/Math.log(2)+(
+				-(double)classatten65_p/(double)classatten65)*Math.log((double)classatten65_p/(double)classatten65)/Math.log(2)+
+				(-(double)classatten65_vp/(double)classatten65)*Math.log((double)classatten65_vp/(double)classatten65)/Math.log(2));
+			
+		double z=(double)classatten50/(double)count;
+		
+		double classatten50_info=z*((-(double)classatten50_ex/(double)classatten50)*Math.log((double)classatten50_ex/(double)classatten65)/Math.log(2) +
+				(-(double)classatten50_vg/(double)classatten50)*Math.log((double)classatten50_vg/(double)classatten65)/Math.log(2)  +
+				(-(double)classatten50_g/(double)classatten50)*Math.log((double)classatten50_g/(double)classatten65)/Math.log(2) +(
+						-(double)classatten50_m/(double)classatten50)*Math.log((double)classatten50_m/(double)classatten65)/Math.log(2) +(
+				-(double)classatten50_p/(double)classatten50)*Math.log((double)classatten50_p/(double)classatten65)/Math.log(2) +
+				(-(double)classatten50_vp/(double)classatten50)*Math.log((double)classatten50_vp/(double)classatten65)/Math.log(2) );
+		
+		double classattendance_info=classatten80_info+classatten65_info+classatten50_info;
+		return classattendance_info;
+	}
 	
 	public double calculateCreditCompleteInfo()
 	{
@@ -1164,71 +1308,128 @@ public class FindInfoGain {
 		
 		return infoTermComplete;
 	}	
-	ArrayList<Double> sortedList=new ArrayList<Double>();
+	public ArrayList<Double> sortedList=new ArrayList<Double>();
 	public void getArrtibute()
 
 	{		
 		double gainCgpa=Math.abs(getInfoD()-calculateCgpaInfo());
-		System.out.println(gainCgpa);
+		System.out.println("Cgpa:"+gainCgpa);
 		sortedList.add(gainCgpa);
 		double gainMaleFemale=Math.abs(getInfoD()-calculateInfoMale_Female());
-		System.out.println(gainMaleFemale);
+		System.out.println("Male Female:"+gainMaleFemale);
 		sortedList.add(gainMaleFemale);
 		double gainDept=Math.abs(getInfoD()-calculateDeptInfo());
-		System.out.println(gainDept);
+		System.out.println("Dept:"+gainDept);
 		sortedList.add(gainDept);
 		double gainComplete=Math.abs(getInfoD()-calculateCreditCompleteInfo());
-		System.out.println(gainComplete);
+		System.out.println("Complete:"+gainComplete);
 		sortedList.add(gainComplete);	
 		double gainHall=Math.abs(getInfoD()-calculateHallInfo());
-		System.out.println(gainHall);
+		System.out.println("Hall:"+gainHall);
 		sortedList.add(gainHall);
+		double classtest=Math.abs(getInfoD()-calculateClasstestInfo());
+		System.out.println("Test:"+classtest);
+		sortedList.add(classtest);
 		
+		double classatten=Math.abs(getInfoD()-calculateClassAttendInfo());
+		System.out.println("Attendance:"+classatten);
+		sortedList.add(classatten);
 		Collections.sort(sortedList);
-		
+		Collections.reverse(sortedList);
 		//Arrays.sort(sortedList);
 	}
 
+	
+	public void printList()
+	{
+		for(int i=0;i<sortedList.size();i++)
+		{
+			System.out.print(sortedList.get(i)+" ");
+		}
+	}
+	
 	
 	double max=-999999;
 	int selected_id=-1;
 	public int getSelectedAttribute()
 	{
+		
+		
 		double gain_cgpa=Math.abs(getInfoD()-calculateCgpaInfo());
-		if(gain_cgpa>max && sortedList.contains(gain_cgpa))
+		
+		if(gain_cgpa==sortedList.get(0) && sortedList.contains(gain_cgpa))
 		{
-			max=gain_cgpa;
+			//max=gain_cgpa;
 			selected_id=1;
 			sortedList.remove(gain_cgpa);
-			System.out.println(gain_cgpa);
+			
+			Collections.sort(sortedList);
+			Collections.reverse(sortedList);
+			//System.out.println(gain_cgpa);
 		}
 		
 		double gain_malefemale=Math.abs(getInfoD()-calculateInfoMale_Female());
-		if(max<gain_malefemale && sortedList.contains(gain_malefemale))
+		if(gain_malefemale==sortedList.get(0) && sortedList.contains(gain_malefemale))
 		{
-			max=gain_malefemale;
+			//max=gain_malefemale;
 			selected_id=2;
-			System.out.println(gain_malefemale);
+			//System.out.println(gain_malefemale);
 			sortedList.remove(gain_malefemale);
+			Collections.sort(sortedList);
+			Collections.reverse(sortedList);
 		}
 		double gainDept=Math.abs(getInfoD()-calculateDeptInfo());
 		
-		if(gainDept>max && sortedList.contains(gainDept))
+		if(gainDept==sortedList.get(0) && sortedList.contains(gainDept))
 		{
-			max=gainDept;
+			//max=gainDept;
 			selected_id=3;
-			System.out.println(gainDept);
+			//System.out.println(gainDept);
 			sortedList.remove(gainDept);
+			Collections.sort(sortedList);
+			Collections.reverse(sortedList);
 		}
 		
 		double gainComplete=Math.abs(getInfoD()-calculateCreditCompleteInfo());
-		if(gainComplete>max && sortedList.contains(gainComplete))
+		if(gainComplete==sortedList.get(0) && sortedList.contains(gainComplete))
 		{
-			max=gainComplete;
+			//max=gainComplete;
 			selected_id=4;
 			sortedList.remove(gainComplete);
+			Collections.sort(sortedList);
+			Collections.reverse(sortedList);
 		}
-	
+		
+		double gainHall=Math.abs(getInfoD()-calculateHallInfo());
+		if(gainHall==sortedList.get(0) && sortedList.contains(gainHall))
+		{
+			//max=gainComplete;
+			selected_id=5;
+			sortedList.remove(gainHall);
+			Collections.sort(sortedList);
+			Collections.reverse(sortedList);
+		}
+		double classtest=Math.abs(getInfoD()-calculateClasstestInfo());
+		if(classtest==sortedList.get(0) && sortedList.contains(classtest))
+		{
+			//max=gainComplete;
+			selected_id=6;
+			sortedList.remove(classtest);
+			Collections.sort(sortedList);
+			Collections.reverse(sortedList);
+		}
+		double classatten=Math.abs(getInfoD()-calculateClassAttendInfo());
+		
+		if(classatten==sortedList.get(0) && sortedList.contains(classatten))
+		{
+			//max=gainComplete;
+			selected_id=7;
+			sortedList.remove(classatten);
+			Collections.sort(sortedList);
+			Collections.reverse(sortedList);
+		}
+		
+		
 		return selected_id;
 	}
 	
