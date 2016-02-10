@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 public class FindInfoGain {
@@ -80,10 +81,21 @@ public class FindInfoGain {
 	int hall_attached=0;
 	
 
+	public ArrayList<ArrayList<String>> cgpa_gt_80;
+	public ArrayList<ArrayList<String>> cgpa_gt_65;
+	public ArrayList<ArrayList<String>> cgpa_gt_50;
+	
 	ArrayList<Integer> att_list=new ArrayList<Integer>();
+	
+	public HashMap<String, Double> gainMap;
 	
 	public FindInfoGain()
 	{
+		
+		cgpa_gt_80=new ArrayList<ArrayList<String>>();
+		cgpa_gt_65=new ArrayList<ArrayList<String>>();
+		cgpa_gt_50=new ArrayList<ArrayList<String>>();
+		
 		excellent=0;
 		very_good=0;
 		good=0;
@@ -120,6 +132,8 @@ public class FindInfoGain {
 		poor_tnc=0;
 		very_poor_tnc=0;
 	
+		gainMap=new HashMap<String, Double>();
+		
 		eee=new int[6];
 		cse=new int[6];
 		ipe=new int[6];
@@ -1314,26 +1328,34 @@ public class FindInfoGain {
 	{		
 		double gainCgpa=Math.abs(getInfoD()-calculateCgpaInfo());
 		System.out.println("Cgpa:"+gainCgpa);
+		gainMap.put("Cgpa",gainCgpa);
 		sortedList.add(gainCgpa);
 		double gainMaleFemale=Math.abs(getInfoD()-calculateInfoMale_Female());
 		System.out.println("Male Female:"+gainMaleFemale);
 		sortedList.add(gainMaleFemale);
+		gainMap.put("MaleFemale",gainMaleFemale);
 		double gainDept=Math.abs(getInfoD()-calculateDeptInfo());
 		System.out.println("Dept:"+gainDept);
+		gainMap.put("Dept",gainDept);
 		sortedList.add(gainDept);
 		double gainComplete=Math.abs(getInfoD()-calculateCreditCompleteInfo());
 		System.out.println("Complete:"+gainComplete);
+		gainMap.put("Complete",gainComplete);
 		sortedList.add(gainComplete);	
 		double gainHall=Math.abs(getInfoD()-calculateHallInfo());
 		System.out.println("Hall:"+gainHall);
+		gainMap.put("Hall",gainHall);
 		sortedList.add(gainHall);
 		double classtest=Math.abs(getInfoD()-calculateClasstestInfo());
 		System.out.println("Test:"+classtest);
 		sortedList.add(classtest);
+		gainMap.put("Test",classtest);
 		
 		double classatten=Math.abs(getInfoD()-calculateClassAttendInfo());
 		System.out.println("Attendance:"+classatten);
 		sortedList.add(classatten);
+		gainMap.put("Attendance",classatten);
+		
 		Collections.sort(sortedList);
 		Collections.reverse(sortedList);
 		//Arrays.sort(sortedList);
@@ -1480,6 +1502,10 @@ public class FindInfoGain {
 	
 		return maxString;
 	}
-
-
+	
+	
+	public void generateTree()
+	{
+		
+	}
 }
