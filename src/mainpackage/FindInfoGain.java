@@ -1353,16 +1353,14 @@ public class FindInfoGain {
 	int selected_id=-1;
 	public int getSelectedAttribute()
 	{
-		
-		
+			
 		double gain_cgpa=Math.abs(getInfoD()-calculateCgpaInfo());
 		
 		if(gain_cgpa==sortedList.get(0) && sortedList.contains(gain_cgpa))
 		{
 			//max=gain_cgpa;
 			selected_id=1;
-			sortedList.remove(gain_cgpa);
-			
+			sortedList.remove(gain_cgpa);			
 			Collections.sort(sortedList);
 			Collections.reverse(sortedList);
 			//System.out.println(gain_cgpa);
@@ -1435,7 +1433,53 @@ public class FindInfoGain {
 	
 	 public double logOfBase(int base, double num) {
 		    return Math.log(num) / Math.log(base);
+	}
+	 
+	public String getMaxProableLabel()
+	{
+		String maxString="";
+		int max=-9999;
+		if(excellent>max)
+		{
+			max=excellent;
+			maxString="Excellent";
 		}
+		if(very_good>=max)
+		{
+			max=very_good;
+			maxString="Very Good";
+			
+		}
+		if(good>=max)
+		{
+			max=good;
+			maxString="Good";
+			
+		}
+		
+		if(moderate>=max)
+		{
+			max=moderate;
+			maxString="Moderate";
+			
+		}
+		
+		if(poor>=max)
+		{
+			max=poor;
+			maxString="Poor";
+			
+		}
+		
+		if(very_poor>=max)
+		{
+			max=very_poor;
+			maxString="Very Poor";
+			
+		}
+	
+		return maxString;
+	}
 
 
 }

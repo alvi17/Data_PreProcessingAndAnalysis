@@ -41,7 +41,7 @@ public class MainClass {
 		//System.out.println("InfoDGender: "+fg.calculateCgpaInfo());
 		fg.getArrtibute();
 		fg.printList();
-		System.out.println("InfoD: "+fg.getSelectedAttribute());
+//		System.out.println("InfoD: "+fg.getSelectedAttribute());
 //		System.out.println("InfoD: "+fg.getSelectedAttribute());
 //		System.out.println("InfoD: "+fg.getSelectedAttribute());
 //		System.out.println("InfoD: "+fg.getSelectedAttribute());
