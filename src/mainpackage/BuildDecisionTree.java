@@ -16,11 +16,15 @@ public class BuildDecisionTree {
 	public ArrayList<Integer> creditList;
 	public ArrayList<String> statusList;
 	
+	public ArrayList<ArrayList<String>> cgpa_gt_80;
+	public ArrayList<ArrayList<String>> cgpa_gt_50;
+	public ArrayList<ArrayList<String>> cgpa_gt_00;
 	
 	public BuildDecisionTree()
 	{
 		list=new ArrayList<Double>();
 		fg=new FindInfoGain();
+		fg.updateClassLabels();
 		fg.getArrtibute();
 		list=fg.sortedList;
 		
@@ -33,10 +37,22 @@ public class BuildDecisionTree {
 		attendanceList=new ArrayList<Double>();
 		statusList=new ArrayList<String>();	
 		
+		
+		cgpa_gt_80=new ArrayList<ArrayList<String>>();
+		cgpa_gt_50=new ArrayList<ArrayList<String>>();
+		cgpa_gt_00=new ArrayList<ArrayList<String>>();
+		
+		cgpa_gt_80=fg.cgpa_gt_80;
+		cgpa_gt_50=fg.cgpa_gt_50;
+		cgpa_gt_00=fg.cgpa_gt_00;
+		
 	}
 	
-	public void buildTree()
-	{
+	public void buildTree_80()
+	{		
+		ArrayList<String> temp=cgpa_gt_80.get(0);		
+		System.out.println(cgpa_gt_00.size());
+		System.out.println(temp.toString());
 		
 		
 	}
@@ -48,6 +64,9 @@ public class BuildDecisionTree {
 		return "";
 	}
 	
-	
+	public static void main(String[] args) {
+		BuildDecisionTree bt=new BuildDecisionTree();
+		bt.buildTree_80();
+	}
 
 }

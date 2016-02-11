@@ -82,8 +82,10 @@ public class FindInfoGain {
 	
 
 	public ArrayList<ArrayList<String>> cgpa_gt_80;
-	public ArrayList<ArrayList<String>> cgpa_gt_65;
 	public ArrayList<ArrayList<String>> cgpa_gt_50;
+	public ArrayList<ArrayList<String>> cgpa_gt_00;
+	
+	public int cg_gt_80=0,cg_gt_65=0,cg_gt_50=0;
 	
 	ArrayList<Integer> att_list=new ArrayList<Integer>();
 	
@@ -93,8 +95,8 @@ public class FindInfoGain {
 	{
 		
 		cgpa_gt_80=new ArrayList<ArrayList<String>>();
-		cgpa_gt_65=new ArrayList<ArrayList<String>>();
 		cgpa_gt_50=new ArrayList<ArrayList<String>>();
+		cgpa_gt_00=new ArrayList<ArrayList<String>>();
 		
 		excellent=0;
 		very_good=0;
@@ -234,10 +236,11 @@ public class FindInfoGain {
 				int male_female=Integer.parseInt(tokens[3]);
 				int credit_complete=Integer.parseInt(tokens[7]);
 				int dept=Integer.parseInt(tokens[1]);
-				double cgpa=Double.parseDouble(tokens[6]);
-				
+				double cgpa=Double.parseDouble(tokens[6]);				
 				double classtest=Double.parseDouble(tokens[5]);
 				double classAttendance=Double.parseDouble(tokens[4]);
+				
+			
 				
 
 				if(classAttendance>=.8)
@@ -329,14 +332,54 @@ public class FindInfoGain {
 				if(cgpa>=3.8)
 				{
 					cgpa_80++;
+					
+
+					ArrayList<String> temp=new ArrayList<String>();
+					temp.add(tokens[0]);
+					temp.add(tokens[1]);
+					temp.add(tokens[2]);
+					temp.add(tokens[3]);
+					temp.add(tokens[4]);
+					temp.add(tokens[5]);
+					temp.add(tokens[7]);
+					temp.add(tokens[8]);
+										
+					cgpa_gt_80.add(temp);
+					
 				}
 				else if(cgpa>=3.5 && cgpa<3.8)
 				{
 					cgpa_50++;
+
+					ArrayList<String> temp=new ArrayList<String>();
+					temp.add(tokens[0]);
+					temp.add(tokens[1]);
+					temp.add(tokens[2]);
+					temp.add(tokens[3]);
+					temp.add(tokens[4]);
+					temp.add(tokens[5]);
+					temp.add(tokens[7]);
+					temp.add(tokens[8]);
+										
+					cgpa_gt_50.add(temp);
+					
 				}
 				else
 				{
 					cgpa_00++;
+
+					ArrayList<String> temp=new ArrayList<String>();
+					temp.add(tokens[0]);
+					temp.add(tokens[1]);
+					temp.add(tokens[2]);
+					temp.add(tokens[3]);
+					temp.add(tokens[4]);
+					temp.add(tokens[5]);
+					temp.add(tokens[7]);
+					temp.add(tokens[8]);
+										
+					cgpa_gt_00.add(temp);
+					
 				}
 				
 				if(credit_complete>=158)
