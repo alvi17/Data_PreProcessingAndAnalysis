@@ -29,8 +29,8 @@ public class MainClass {
 //		Calulate_Info_Cgpa c=new Calulate_Info_Cgpa();
 //		c.calculate();
 		
-//		Calculate_CgpaForSheets cg=new Calculate_CgpaForSheets();
-//		cg.create_training_Csv();
+		Calculate_CgpaForSheets cg=new Calculate_CgpaForSheets();
+		cg.create_training_Csv();
 				
 //		FindInfoGain fg=new FindInfoGain();
 //		fg.updateClassLabels();
@@ -49,11 +49,11 @@ public class MainClass {
 //		System.out.println("InfoD: "+fg.getSelectedAttribute());
 //		System.out.println("InfoD: "+fg.getSelectedAttribute());
 //		
-		ID3Algorithm id3=new ID3Algorithm();
-		id3.getFinalClass();
-		
-		CalculateAccuracy ca=new CalculateAccuracy();
-		System.out.println("Accuracy: "+ca.getAccuracy());
+//		ID3Algorithm id3=new ID3Algorithm();
+//		id3.getFinalClass();
+//		
+//		CalculateAccuracy ca=new CalculateAccuracy();
+//		System.out.println("Accuracy: "+ca.getAccuracy());
 	
 	}
 }

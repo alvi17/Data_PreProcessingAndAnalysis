@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Data_PreProcessing_CreditColumn {
 	
-	String fileName="processed_sheet5.csv";
+	String fileName="processed_sheet2.csv";
 	FileWriter fileWriter = null;
 	
 	public Data_PreProcessing_CreditColumn()
@@ -36,7 +36,7 @@ public class Data_PreProcessing_CreditColumn {
 			
 		String line = "";
 		fileReader = new BufferedReader(new FileReader(fileName));
-		fileWriter = new FileWriter("processed_sheet5_withCredit.csv");
+		fileWriter = new FileWriter("processed_sheet2_withCredit.csv");
 		String s=fileReader.readLine();
 		String[] parts=s.split(",");
 		fileWriter.append("SERIAL,DEPARTMENTID,HALLSTATUS,Gender,STARTINGACADEMICYEAR2,ADMISSIONDATE,ADMISSIONDATE,LETTERGRADE,CLASSATTENDENCEMARKS,CLASSTESTMARKS,PARTAMARKS,PARTBMARKS,TOTALNUMBER,LEVELNAME,TERMNAME,GPA,CGPA,TERMCOUNT,CRHREARNED,TOTCRHRCOMPLETED,COURSECREDIT");
@@ -137,6 +137,98 @@ public class Data_PreProcessing_CreditColumn {
 				 fileWriter.append(","+credit);
 				 System.out.println(courseName+","+"Percent :"+percent+","+credit+",");
 			 }
+			 
+			 else if(sessional==0 && totalNumber>=180 && totalNumber<1200 && !courseName.contains("400"))
+			 {
+				 //6 credit
+				 double percent6 =totalNumber/600*100;
+				 double percent4_5 =totalNumber/450*100;
+				 double percent8 =totalNumber/800*100;
+				 double percent10 =totalNumber/1000*100;
+				 double percent12 =totalNumber/1200*100;
+				 
+				 
+				 if((percent6>=78 && grades.equals("A+"))||(percent6<80 && percent6>=74 && grades.equals("A"))
+						 ||(percent6<75
+						 && percent6>=69 && grades.equals("A-"))|| (percent6<70 && percent6>=64 && grades.equals("B+"))||
+						 (percent6<65 && percent6>=59 && grades.equals("B"))||(percent6<60 && percent6>=54 && 
+						 grades.equals("B-"))||
+						 (percent6<55 && percent6>=49 && grades.equals("C+"))||(percent6<50 && percent6>=44 
+						 && grades.equals("C"))||
+						 (percent6<45 && percent6>=39 && grades.equals("D"))||(percent6<40 && grades.equals("F")))
+				 {
+					 credit=6;				 
+					 //	System.out.println(",1.5,");
+				 }
+
+				 if((percent4_5>=78 && grades.equals("A+"))||(percent4_5<80 && percent4_5>=74
+						 && grades.equals("A"))||(percent4_5<75
+						 && percent4_5>=69 && grades.equals("A-"))|| (percent4_5<70 && percent4_5>=64
+						 && grades.equals("B+"))||
+						 (percent4_5<65 && percent4_5>=59 && grades.equals("B"))||(percent4_5<60 && 
+								 percent4_5>=54 && 
+						 grades.equals("B-"))||
+						 (percent4_5<55 && percent4_5>=49 && grades.equals("C+"))||
+						 (percent4_5<50 && percent4_5>=44 && grades.equals("C"))||
+						 (percent4_5<45 && percent4_5>=39 && grades.equals("D"))||
+						 (percent4_5<40 && grades.equals("F")))
+				 {
+					 credit=4.5;				 
+					 //	System.out.println(",1.5,");
+				 }
+				 
+				 if((percent8>=79 && grades.equals("A+"))||(percent8<80 && percent8>=74
+						 && grades.equals("A"))||(percent4_5<75
+						 && percent8>=69 && grades.equals("A-"))|| (percent8<70 && percent8>=64
+						 && grades.equals("B+"))||
+						 (percent8<65 && percent8>=59 && grades.equals("B"))||(percent8<60 && 
+								 percent8>=54 && 
+						 grades.equals("B-"))||
+						 (percent8<55 && percent8>=49 && grades.equals("C+"))||
+						 (percent8<50 && percent8>=44 && grades.equals("C"))||
+						 (percent8<45 && percent8>=39 && grades.equals("D"))||
+						 (percent8<40 && grades.equals("F")))
+				 {
+					 credit=8;				 
+					 //	System.out.println(",1.5,");
+				 }
+				  
+				 if((percent10>=79 && grades.equals("A+"))||(percent10<80 && percent10>=74
+						 && grades.equals("A"))||(percent10<75
+						 && percent10>=69 && grades.equals("A-"))|| (percent10<70 && percent10>=64
+						 && grades.equals("B+"))||
+						 (percent10<65 && percent10>=59 && grades.equals("B"))||(percent10<60 && 
+								 percent10>=54 && 
+						 grades.equals("B-"))||
+						 (percent10<55 && percent10>=49 && grades.equals("C+"))||
+						 (percent10<50 && percent10>=44 && grades.equals("C"))||
+						 (percent10<45 && percent10>=39 && grades.equals("D"))||
+						 (percent10<40 && grades.equals("F")))
+				 {
+					 credit=10;				 
+					 //	System.out.println(",1.5,");
+				 }
+				 
+				 if((percent12>=79 && grades.equals("A+"))||(percent12<80 && percent12>=74
+						 && grades.equals("A"))||(percent12<75
+						 && percent12>=69 && grades.equals("A-"))|| (percent12<70 && percent12>=64
+						 && grades.equals("B+"))||
+						 (percent12<65 && percent12>=59 && grades.equals("B"))||(percent12<60 && 
+								 percent12>=54 && 
+						 grades.equals("B-"))||
+						 (percent12<55 && percent12>=49 && grades.equals("C+"))||
+						 (percent12<50 && percent12>=44 && grades.equals("C"))||
+						 (percent12<45 && percent12>=39 && grades.equals("D"))||
+						 (percent12<40 && grades.equals("F")))
+				 {
+					 credit=12;				 
+					 //	System.out.println(",1.5,");
+				 }
+				 
+				 sessionalCourse++;
+				 fileWriter.append(","+credit);
+			 }
+			 
 			 else if(courseName.contains("400") &&  !grades.equals("X"))
 			 {
 				 //thesis
