@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculate_CgpaForSheets {
-	String fileName="processed_sheet2_withCredit.csv";
+	String fileName="processed_sheet5_withCredit.csv";
 	FileWriter fileWriter = null;
 	
 	public Calculate_CgpaForSheets()
@@ -27,7 +27,7 @@ public class Calculate_CgpaForSheets {
 		try{
 		String line = "";
 		fileReader = new BufferedReader(new FileReader(fileName));
-		fileWriter = new FileWriter("processedSheet2_withCgpa.csv");
+		fileWriter = new FileWriter("processedSheet5_withCgpa.csv");
 		fileReader.readLine();
 		fileWriter.append("SID,Department,Hall_Status,Male_Female,Attendance,ClassText,Cgpa,Total_Credit_Completed,Status");
 		fileWriter.append("\n");
@@ -54,7 +54,7 @@ public class Calculate_CgpaForSheets {
 			 int level=0,term=0;
 		
 			 serial=Integer.parseInt(token[0]);
-			if(!token[13].equals(""))
+			if(!token[13].equals("") && !token[13].equals("NA"))
 			{
 				level=Integer.parseInt(token[13]);
 			}

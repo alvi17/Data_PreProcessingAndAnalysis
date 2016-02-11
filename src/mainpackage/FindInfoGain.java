@@ -15,7 +15,7 @@ import java.util.List;
 
 public class FindInfoGain {
 	
-	String fileName="processedSheet2_Updated_Status.csv";
+	String fileName="training_data.csv";
 	
 	double infoD;
 	double infoMaleFemale;
