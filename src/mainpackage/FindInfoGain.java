@@ -15,7 +15,7 @@ import java.util.List;
 
 public class FindInfoGain {
 	
-	String fileName="training_data.csv";
+	String fileName="processedSheet2_Updated_Status.csv";
 	
 	double infoD;
 	double infoMaleFemale;
@@ -229,18 +229,21 @@ public class FindInfoGain {
 			fileReader = new BufferedReader(new FileReader(fileName));
 			fileReader.readLine();
 			String[] tokens=null;
+			int i=0;
 			while((line=fileReader.readLine())!=null)
 			{
 				tokens=line.split(",");
 				String result_status=tokens[8];
 				int male_female=Integer.parseInt(tokens[3]);
-				int credit_complete=Integer.parseInt(tokens[7]);
+				double credit_complete=Double.parseDouble(tokens[7]);
 				int dept=Integer.parseInt(tokens[1]);
 				double cgpa=Double.parseDouble(tokens[6]);				
 				double classtest=Double.parseDouble(tokens[5]);
 				double classAttendance=Double.parseDouble(tokens[4]);
 				
-			
+				i++;
+				if(i==100)
+					break;
 				
 
 				if(classAttendance>=.8)
@@ -447,7 +450,7 @@ public class FindInfoGain {
 						excellent_female++;
 					}
 					
-					if(credit_complete>=158)
+					if(credit_complete>=.99)
 					{
 						excellent_tc++;
 					}

@@ -32,15 +32,15 @@ public class MainClass {
 //		Calculate_CgpaForSheets cg=new Calculate_CgpaForSheets();
 //		cg.create_training_Csv();
 				
-		FindInfoGain fg=new FindInfoGain();
-		fg.updateClassLabels();
-
-	
-		//System.out.println("InfoD: "+fg.getInfoD());
-		
-		//System.out.println("InfoDGender: "+fg.calculateCgpaInfo());
-		fg.getArrtibute();
-		fg.printList();
+//		FindInfoGain fg=new FindInfoGain();
+//		fg.updateClassLabels();
+//
+//	
+//		//System.out.println("InfoD: "+fg.getInfoD());
+//		
+//		//System.out.println("InfoDGender: "+fg.calculateCgpaInfo());
+//		fg.getArrtibute();
+//		fg.printList();
 //		System.out.println("InfoD: "+fg.getSelectedAttribute());
 //		System.out.println("InfoD: "+fg.getSelectedAttribute());
 //		System.out.println("InfoD: "+fg.getSelectedAttribute());
@@ -49,8 +49,11 @@ public class MainClass {
 //		System.out.println("InfoD: "+fg.getSelectedAttribute());
 //		System.out.println("InfoD: "+fg.getSelectedAttribute());
 //		
+		ID3Algorithm id3=new ID3Algorithm();
+		id3.getFinalClass();
 		
-		
+		CalculateAccuracy ca=new CalculateAccuracy();
+		System.out.println("Accuracy: "+ca.getAccuracy());
 	
 	}
 }
