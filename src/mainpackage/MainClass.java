@@ -29,11 +29,12 @@ public class MainClass {
 //		Calulate_Info_Cgpa c=new Calulate_Info_Cgpa();
 //		c.calculate();
 		
-		Calculate_CgpaForSheets cg=new Calculate_CgpaForSheets();
-		cg.create_training_Csv();
+//		Calculate_CgpaForSheets cg=new Calculate_CgpaForSheets();
+//		cg.create_training_Csv();
 				
 //		FindInfoGain fg=new FindInfoGain();
 //		fg.updateClassLabels();
+//		fg.getArrtibute();
 //
 //	
 //		//System.out.println("InfoD: "+fg.getInfoD());

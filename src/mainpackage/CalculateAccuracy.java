@@ -6,7 +6,7 @@ import java.io.FileWriter;
 
 public class CalculateAccuracy {
 	
-	String fileName="processedSheet2_Updated_Status.csv";
+	String fileName="training_data.csv";
 	String fileName1="FinalResultFromsheet2.csv";
 	
 	public CalculateAccuracy()
@@ -37,7 +37,7 @@ public class CalculateAccuracy {
 				i++;
 				if(i==100)
 				{
-//					break;
+					break;
 				}
 				if(tokens[8].equals(tokens1[8]))
 				{

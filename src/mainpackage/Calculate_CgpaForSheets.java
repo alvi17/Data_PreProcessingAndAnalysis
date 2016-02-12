@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculate_CgpaForSheets {
-	String fileName="processed_sheet5_withCredit.csv";
+	String fileName="processed_sheet4_withCredit.csv";
 	FileWriter fileWriter = null;
 	
 	public Calculate_CgpaForSheets()
@@ -27,7 +27,7 @@ public class Calculate_CgpaForSheets {
 		try{
 		String line = "";
 		fileReader = new BufferedReader(new FileReader(fileName));
-		fileWriter = new FileWriter("processedSheet5_withCgpa.csv");
+		fileWriter = new FileWriter("processedSheet4_withCgpa.csv");
 		fileReader.readLine();
 		fileWriter.append("SID,Department,Hall_Status,Male_Female,Attendance,ClassText,Cgpa,Total_Credit_Completed,Status");
 		fileWriter.append("\n");
@@ -54,21 +54,21 @@ public class Calculate_CgpaForSheets {
 			 int level=0,term=0;
 		
 			 serial=Integer.parseInt(token[0]);
-			if(!token[13].equals("") && !token[13].equals("NA"))
+			if(!token[16].equals("") && !token[16].equals("NA"))
 			{
-				level=Integer.parseInt(token[13]);
+				level=Integer.parseInt(token[16]);
 			}
-			if(!token[14].equals(""))
+			if(!token[17].equals(""))
 			{
-				term=Integer.parseInt(token[14]);
+				term=Integer.parseInt(token[17]);
 			}
 			
 			
 			if(((level==4 && term ==2 )|| (level==5 && term ==2) && token[1].equals("Arch")))
 			{
 				 //double cgpa=Double.parseDouble(token[19]);
-				if(!token[19].equals("NR"))
-				  term_complete=Integer.parseInt(token[19]);
+				if(!token[22].equals("NR"))
+				  term_complete=Integer.parseInt(token[22]);
 
 			//  fileWriter.append(token[0]+","+token[5]+","+token[19]+","+token[22]+"\n");	
 			//  prev_serial=serial;
@@ -78,24 +78,24 @@ public class Calculate_CgpaForSheets {
 			 if(serial==prev_serial)
 			 {
 				 tokens=token;
-				 if(!token[8].equals("INF"))
+				 if(!token[11].equals("INF"))
 				{
 					
-					attendance_marks+=((double)Integer.parseInt(token[8])/(10));
+					attendance_marks+=((double)Integer.parseInt(token[11])/(10));
 					
-					if(Integer.parseInt(token[6].substring(token[6].length()-1))%2!=0)
+					if(Integer.parseInt(token[9].substring(token[9].length()-1))%2!=0)
 					{
-						theory_credit+=Double.parseDouble(token[20]);
+						theory_credit+=Double.parseDouble(token[23]);
 					}
 				//	System.out.println("Attendance = "+attendance_marks);
 				}
 				 
-				 if(!token[9].equals("INF") && !token[9].equals("Abs"))
+				 if(!token[12].equals("INF") && !token[12].equals("Abs"))
 				 {
-					 classtest_marks+=Double.parseDouble(token[9])/20;
+					 classtest_marks+=Double.parseDouble(token[12])/20;
 				 }
 				 
-				 if(token[3].equals("F"))
+				 if(token[5].equals("F"))
 				 {
 					 male_female=0;
 				 }
@@ -159,49 +159,49 @@ public class Calculate_CgpaForSheets {
 				 }
 				 
 				 
-				 if(token[7].equals("A+"))
+				 if(token[10].equals("A+"))
 				 {
-					 totalgpa+=(4* Double.parseDouble(token[20]));
+					 totalgpa+=(4* Double.parseDouble(token[23]));
 					 
 				 }
-				 else if(token[7].equals("A"))
+				 else if(token[10].equals("A"))
 				 {
-					 totalgpa+=(3.75* Double.parseDouble(token[20]));
+					 totalgpa+=(3.75* Double.parseDouble(token[23]));
 					 
 				 }
-				 else if(token[7].equals("A-"))
+				 else if(token[10].equals("A-"))
 				 {
-					 totalgpa+=(3.5* Double.parseDouble(token[20]));
+					 totalgpa+=(3.5* Double.parseDouble(token[23]));
 					 
 				 }
-				 else if(token[7].equals("B+"))
+				 else if(token[10].equals("B+"))
 				 {
-					 totalgpa+=(3.25* Double.parseDouble(token[20]));
+					 totalgpa+=(3.25* Double.parseDouble(token[23]));
 					 
 				 }
-				 else if(token[7].equals("B"))
+				 else if(token[10].equals("B"))
 				 {
-					 totalgpa+=(3* Double.parseDouble(token[20]));
+					 totalgpa+=(3* Double.parseDouble(token[23]));
 					 
 				 }
-				 else if(token[7].equals("B-"))
+				 else if(token[10].equals("B-"))
 				 {
-					 totalgpa+=(2.75* Double.parseDouble(token[20]));
+					 totalgpa+=(2.75* Double.parseDouble(token[23]));
 					 
 				 }
-				 else if(token[7].equals("C+"))
+				 else if(token[10].equals("C+"))
 				 {
-					 totalgpa+=(2.5* Double.parseDouble(token[20]));
+					 totalgpa+=(2.5* Double.parseDouble(token[23]));
 					 
 				 }
-				 else if(token[7].equals("C"))
+				 else if(token[10].equals("C"))
 				 {
-					 totalgpa+=(2.25* Double.parseDouble(token[20]));
+					 totalgpa+=(2.25* Double.parseDouble(token[23]));
 					 
 				 }
-				 else if(token[7].equals("D"))
+				 else if(token[10].equals("D"))
 				 {
-					 totalgpa+=(2* Double.parseDouble(token[20]));
+					 totalgpa+=(2* Double.parseDouble(token[23]));
 					 
 				 }
 				 
